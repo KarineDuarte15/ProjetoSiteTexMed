@@ -1,0 +1,234 @@
+/* ------------------- */
+/* VARIÁVEIS DE CORES E FONTES */
+/* ------------------- */
+:root {
+    --cor-azul-escuro: #021E37;
+    --cor-cinza-azulado: #98A4AE;
+    --cor-dourado: #8F7C4E;
+    --cor-verde: #678D73;
+    --cor-branca: #FFFFFF;
+
+    --fonte-principal: 'Helvetica', Arial, sans-serif;
+}
+
+/* ------------------- */
+/* ESTILOS GERAIS */
+/* ------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth; /* Habilita a rolagem suave nativa do navegador */
+}
+
+body {
+    font-family: var(--fonte-principal);
+    background-color: var(--cor-branca);
+    color: var(--cor-azul-escuro);
+}
+
+section {
+    padding: 80px 5%;
+    text-align: center;
+}
+
+h1, h2, h3 {
+    color: var(--cor-azul-escuro);
+}
+
+h1 {
+    font-size: 3rem;
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 40px;
+}
+
+p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+}
+
+/* ------------------- */
+/* CABEÇALHO E NAVEGAÇÃO */
+/* ------------------- */
+.main-header {
+    background-color: var(--cor-azul-escuro);
+    padding: 10px 5%;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.main-nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    max-height: 60px; /* Ajuste a altura do seu logo */
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: var(--cor-branca);
+    font-weight: bold;
+    font-size: 1rem;
+    transition: color 0.3s;
+}
+
+.main-nav a:hover {
+    color: var(--cor-dourado);
+}
+
+.nav-cta {
+    background-color: var(--cor-dourado);
+    padding: 10px 20px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.nav-cta:hover {
+    background-color: var(--cor-verde);
+    color: var(--cor-branca);
+}
+
+
+/* ------------------- */
+/* SEÇÃO HERO */
+/* ------------------- */
+.hero-section {
+    background-color: var(--cor-azul-escuro);
+    color: var(--cor-branca);
+    height: 90vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-content {
+    max-width: 800px;
+}
+
+.hero-content h1 {
+    color: var(--cor-branca);
+}
+
+.hero-content p {
+    color: var(--cor-cinza-azulado);
+    margin: 20px 0 40px;
+}
+
+.cta-button {
+    background-color: var(--cor-verde);
+    color: var(--cor-branca);
+    padding: 18px 35px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.cta-button:hover {
+    background-color: var(--cor-dourado);
+}
+
+
+/* ------------------- */
+/* SEÇÃO SOBRE */
+/* ------------------- */
+.sobre-container {
+    display: flex;
+    justify-content: space-around;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.sobre-card {
+    flex-basis: 30%;
+    padding: 30px;
+    background-color: #f7f7f7;
+    border-radius: 8px;
+}
+
+/* ------------------- */
+/* SEÇÃO SERVIÇOS */
+/* ------------------- */
+.section-dark {
+    background-color: var(--cor-azul-escuro);
+}
+
+.section-dark h2, .section-dark h3, .section-dark p {
+    color: var(--cor-branca);
+}
+
+.servicos-container {
+    display: flex;
+    gap: 30px;
+}
+.servico-item {
+    border: 2px solid var(--cor-dourado);
+    padding: 30px;
+    border-radius: 8px;
+    flex-basis: 33%;
+}
+
+/* ------------------- */
+/* CTA FINAL E RODAPÉ */
+/* ------------------- */
+.cta-final {
+    background-color: var(--cor-dourado);
+}
+.cta-final h2 {
+    color: var(--cor-branca);
+}
+.cta-final .cta-button {
+    background-color: var(--cor-azul-escuro);
+}
+.cta-final .cta-button:hover {
+    background-color: var(--cor-verde);
+}
+
+footer {
+    background-color: var(--cor-azul-escuro);
+    color: var(--cor-cinza-azulado);
+    padding: 60px 5%;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--cor-cinza-azulado);
+}
+
+.footer-col {
+    flex-basis: 30%;
+}
+
+.footer-col h3 {
+    color: var(--cor-branca);
+    margin-bottom: 20px;
+}
+.footer-col a {
+    color: var(--cor-cinza-azulado);
+    text-decoration: none;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+}
