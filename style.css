@@ -99,7 +99,7 @@ p {
 }
 
 .main-nav .nav-cta:hover {
-    background-color: var(--cor-cinza-azulado); /* Exemplo de hover */
+    background-color: var(--cor-dourado); /* Exemplo de hover */
     color: var(--cor-branca);
 }
 
