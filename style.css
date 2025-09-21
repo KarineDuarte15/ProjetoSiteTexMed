@@ -180,8 +180,9 @@ p {
     height: 100%; /* A imagem preenche a altura da sua div */
     object-fit: cover; /* Garante que a imagem cubra todo o espaço sem distorcer */
 }
-
-/* Ajustes para telas menores (responsividade) */
+/* ------------------- */
+/* RESPONSIVIDADE */    
+/* ------------------- */
 @media (max-width: 768px) {
     .hero-content-wrapper {
         flex-direction: column; /* Em telas pequenas, as colunas viram linhas */
@@ -210,6 +211,50 @@ p {
     }
 }
 
+
+/* ------------------- */
+/* SEÇÃO QUEM SOMOS */
+/* ------------------- */
+#quem-somos {
+    background-color: var(--cor-branca);
+    padding: 100px 5%;
+}
+
+.quem-somos-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.quem-somos-image, .quem-somos-text {
+    flex: 1; 
+}
+
+.quem-somos-image img {
+    width: 100%;
+    border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%; 
+    border: 8px solid var(--cor-verde); /* Borda verde como na imagem */
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.quem-somos-text {
+    text-align: left;
+}
+
+.quem-somos-text h2 {
+    font-size: 2.8rem;
+    color: var(--cor-verde);
+    margin-bottom: 20px;
+}
+
+.quem-somos-text p {
+    font-size: 1.1rem;
+    color: var(--cor-azul-escuro);
+    line-height: 1.7;
+}
 
 /* ------------------- */
 /* SEÇÃO SOBRE */
