@@ -99,7 +99,7 @@ p {
 }
 
 .main-nav .nav-cta:hover {
-    background-color: var(--cor-dourado); /* Exemplo de hover */
+    background-color: var(--cor-dourado); 
     color: var(--cor-branca);
 }
 
@@ -111,6 +111,23 @@ p {
     display: flex;
     align-items: center; /* Centraliza verticalmente o conteúdo */
     padding: 0; /* Remove padding padrão para que a imagem preencha a lateral */
+}
+
+.cta-button {
+    display: inline-block; 
+    align-self: flex-start; 
+    background-color: var(--cor-verde);
+    color: var(--cor-branca);
+    padding: 15px 30px; 
+    border-radius: 50px;
+    text-decoration: none;
+    font-size: 1rem; 
+    font-weight: bold;
+    transition: background-color 0.3s;
+    text-align: center;
+}
+.cta-button:hover {
+    background-color: var(--cor-dourado);
 }
 
 .hero-content-wrapper {
