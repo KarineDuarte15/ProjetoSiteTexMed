@@ -268,28 +268,93 @@ p {
 }
 
 /* ------------------- */
-/* SEÇÃO SERVIÇOS */
+/* SEÇÃO SERVIÇOS  */
 /* ------------------- */
-#servicos.section-dark { /* Mais específico para evitar conflitos */
+#servicos.section-dark {
     background-color: var(--cor-azul-escuro);
+    padding: 80px 0; /* Ajuste o padding para a rolagem */
 }
 
-#servicos.section-dark h2, #servicos.section-dark h3, #servicos.section-dark p {
+#servicos.section-dark h2 {
     color: var(--cor-branca);
+    margin-bottom: 60px;
+    padding: 0 5%; /* Adiciona padding horizontal para o título */
 }
 
-.servicos-container {
+.servicos-wrapper {
     display: flex;
-    gap: 30px;
-    max-width: 1200px;
-    margin: 0 auto;
+    overflow-x: auto; /* Habilita a rolagem horizontal */
+    scroll-snap-type: x mandatory; /* Para a rolagem "encaixar" em cada item */
+    -webkit-overflow-scrolling: touch; /* Melhor rolagem em iOS */
+    padding: 0 5%; /* Padding para as laterais, mostrando um pouco do próximo card */
+    gap: 40px; /* Espaçamento entre os itens principais */
+}
+
+.servicos-wrapper::-webkit-scrollbar {
+    height: 10px; /* Altura da scrollbar */
+}
+
+.servicos-wrapper::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1); /* Fundo da scrollbar */
+    border-radius: 10px;
+}
+
+.servicos-wrapper::-webkit-scrollbar-thumb {
+    background: var(--cor-dourado); /* Cor do "puxador" da scrollbar */
+    border-radius: 10px;
+}
+
+.servico-item-wrapper {
+    flex: 0 0 auto; /* Não deixa o item encolher nem crescer */
+    width: 600px; /* Largura fixa para cada par (texto + imagem) em desktop */
+    max-width: 90%; /* Limita a largura para ser responsivo */
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    background-color: var(--cor-azul-escuro); /* Mantém o fundo escuro do container */
+    scroll-snap-align: start; /* Faz a rolagem encaixar no início do item */
+    padding: 20px;
+    border-radius: 15px; /* Bordas arredondadas para o wrapper do item */
 }
 
 .servico-item {
-    border: 2px solid var(--cor-dourado);
+    flex: 1; /* O item de texto ocupa metade do espaço */
+    border: 2px solid var(--cor-dourado); /* Borda ao redor do TEXTO */
     padding: 30px;
-    border-radius: 8px;
-    flex: 1;
+    border-radius: 15px; /* Bordas mais arredondadas para o item de texto */
+    background-color: rgba(255, 255, 255, 0.05); /* Um leve fundo para o card de texto */
+    height: 100%; /* Garante que o item ocupe a altura disponível */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.servico-item h3 {
+    color: var(--cor-branca);
+    margin-bottom: 15px;
+    font-size: 1.8rem;
+}
+
+.servico-item p {
+    color: var(--cor-cinza-azulado);
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.servico-image {
+    flex: 1; /* A imagem ocupa a outra metade */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.servico-image img {
+    width: 100%;
+    height: 300px; 
+    object-fit: cover;
+    border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%; 
+    border: 5px solid var(--cor-dourado); 
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3);
 }
 
 /* ------------------- */
@@ -444,6 +509,32 @@ footer {
 
     .footer-container {
         text-align: center;
+    }
+    .servicos-wrapper {
+        padding: 0 20px; /* Ajusta o padding para telas menores */
+    }
+
+    .servico-item-wrapper {
+        flex-direction: column; /* Empilha texto e imagem em telas menores */
+        width: 300px; /* Largura menor para cada item em mobile */
+        max-width: 95%; /* Garante que caiba bem na tela */
+        padding: 15px;
+        gap: 20px;
+        align-items: center; /* Centraliza itens */
+    }
+
+    .servico-image img {
+        height: 200px; /* Altura menor para imagens em mobile */
+        border-radius: 50%; /* Em mobile, talvez um círculo simples seja melhor */
+    }
+
+    .servico-item {
+        padding: 20px;
+        text-align: center;
+    }
+
+    .servico-item h3 {
+        font-size: 1.5rem;
     }
 }
 
