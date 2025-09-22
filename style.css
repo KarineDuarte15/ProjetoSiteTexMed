@@ -138,7 +138,7 @@ p {
 .logo-hero {
     max-height: 170px;
     margin-bottom: 20px;
-    align-self: flex-start; /* Alinhado à esquerda por padrão */
+    align-self: center; /* Alinhado à esquerda por padrão */
 }
 
 .hero-text-content h1, .hero-text-content p {
