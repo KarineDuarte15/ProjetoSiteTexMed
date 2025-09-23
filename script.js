@@ -83,3 +83,54 @@ document.addEventListener('DOMContentLoaded', function() {
 
     startAutoPlay();
 });
+
+// --- CÓDIGO DO MODAL DE CONTATO (QUE APARECE APÓS 5 SEGUNDOS) ---
+document.addEventListener('DOMContentLoaded', function() {
+    const contactModal = document.getElementById('contactModal');
+    const closeModalBtn = document.getElementById('closeModalBtn');
+    const openModalNavBtn = document.getElementById('openModalNavBtn');
+
+    // Se os elementos do modal não existirem nesta página, não faz nada
+    if (!contactModal || !closeModalBtn || !openModalNavBtn) {
+        return;
+    }
+
+    // Função para mostrar o modal
+    const openModal = () => {
+        contactModal.classList.add('visible');
+    };
+
+    // Função para esconder o modal
+    const closeModal = () => {
+        contactModal.classList.remove('visible');
+    };
+
+    // Mostra o modal 5 segundos depois que a página carregar
+    setTimeout(openModal, 5000); // 5000 milissegundos = 5 segundos
+
+    // Fecha o modal ao clicar no botão "X"
+    closeModalBtn.addEventListener('click', closeModal);
+
+    // Fecha o modal ao clicar fora dele (no fundo escuro)
+    contactModal.addEventListener('click', function(event) {
+        if (event.target === contactModal) {
+            closeModal();
+        }
+    });
+});
+const radioGroup = document.querySelector('.modal-content .radio-group');
+if (radioGroup) {
+    const radioButtons = radioGroup.querySelectorAll('.radio-button');
+    const hiddenInput = document.getElementById('preferencia_contato');
+
+    radioButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove a classe 'active' de todos os botões
+            radioButtons.forEach(btn => btn.classList.remove('active'));
+            // Adiciona a classe 'active' apenas no botão clicado
+            button.classList.add('active');
+            // Atualiza o valor do campo escondido que será enviado com o formulário
+            hiddenInput.value = button.getAttribute('data-value');
+        });
+    });
+}

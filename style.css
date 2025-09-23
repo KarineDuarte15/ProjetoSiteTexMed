@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
+
 /* ------------------- */
 /* VARIÁVEIS DE CORES E FONTES */
 /* ------------------- */
@@ -7,7 +10,8 @@
     --cor-dourado: #8F7C4E;
     --cor-verde: #678D73;
     --cor-branca: #FFFFFF;
-    --fonte-principal: 'Helvetica', Arial, sans-serif;
+    --fonte-principal: 'Poppins', Arial, sans-serif;
+    --cor-verde-rgb: 103, 141, 115; /* Versão RGB da nossa cor verde */
 }
 
 /* ------------------- */
@@ -90,16 +94,21 @@ p {
 }
 
 .main-nav .nav-cta {
-    background-color: var(--cor-branca);
-    color: var(--cor-verde);
-    padding: 10px 20px;
-    border-radius: 5px;
-    transition: background-color 0.3s, color 0.3s;
+    background-color: var(--cor-branca); /* Fundo branco */
+    color: var(--cor-verde); /* Texto verde */
+    padding: 10px 25px; /* Espaçamento interno */
+    border-radius: 8px; /* Bordas arredondadas */
+    border: none;
+    font-family: var(--fonte-principal); /* Garante que usa a fonte Poppins */
+    font-weight: 700; /* Texto em negrito */
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
 
 .main-nav .nav-cta:hover {
-    background-color: var(--cor-dourado);
-    color: var(--cor-branca);
+    background-color: #f0f0f0; /* Um branco um pouco mais escuro ao passar o rato */
+    transform: scale(1.05); /* Efeito de crescimento suave */
 }
 
 /* Esconde o botão hambúrguer em ecrãs grandes */
@@ -109,36 +118,53 @@ p {
 
 
 /* ------------------- */
-/* SEÇÃO HERO */
+/* SEÇÃO HERO COM VÍDEO DE FUNDO */
 /* ------------------- */
 .hero-section {
-    background-color: var(--cor-azul-escuro);
-    height: auto;
-    min-height: 90vh;
+    height: 90vh;
+    position: relative; /* Essencial para sobrepor elementos */
     display: flex;
     align-items: center;
-    padding: 0;
+    justify-content: center;
+    padding: 0 5%;
+    overflow: hidden; /* Garante que o vídeo não ultrapasse a seção */
 }
 
-.hero-content-wrapper {
-    display: flex;
+/* Camada escura sobre o vídeo para dar contraste */
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100%;
+    background-color: rgba(2, 30, 55, 0.70); /* Cor azul escuro com 70% de opacidade */
+    z-index: 2; /* Fica entre o vídeo e o texto */
+}
+
+.hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 1; /* Fica no fundo de tudo */
 }
 
 .hero-text-content {
-    flex: 1;
-    padding: 80px 5%;
-    text-align: left;
+    position: relative; /* Para ficar na frente do vídeo e da camada escura */
+    z-index: 3;
+    text-align: center;
     color: var(--cor-branca);
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    max-width: 800px;
 }
 
 .logo-hero {
     max-height: 170px;
     margin-bottom: 20px;
-    align-self: center; /* Alinhado à esquerda por padrão */
 }
 
 .hero-text-content h1, .hero-text-content p {
@@ -153,7 +179,6 @@ p {
 
 .cta-button {
     display: inline-block;
-    align-self: flex-start;
     background-color: var(--cor-verde);
     color: var(--cor-branca);
     padding: 15px 30px;
@@ -162,23 +187,30 @@ p {
     font-size: 1rem;
     font-weight: bold;
     transition: background-color 0.3s;
-    text-align: center;
 }
 
 .cta-button:hover {
     background-color: var(--cor-dourado);
 }
 
-.hero-image-content {
-    flex: 1;
-    display: flex;
-    overflow: hidden;
+/* Animação de pulso para o botão */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(var(--cor-verde-rgb), 0.7);
+    }
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 10px 20px rgba(var(--cor-verde-rgb), 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(var(--cor-verde-rgb), 0);
+    }
 }
 
-.hero-gif {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.animated-button {
+    animation: pulse 2s infinite;
 }
 
 /* ------------------- */
@@ -268,7 +300,7 @@ p {
 }
 
 /* ------------------- */
-/* SEÇÃO SERVIÇOS - SLIDER INTERATIVO COM PONTINHOS */
+/* SEÇÃO SERVIÇOS - SLIDER COM NOVO DESIGN */
 /* ------------------- */
 #servicos.section-dark {
     background-color: var(--cor-azul-escuro);
@@ -283,10 +315,90 @@ p {
 
 .slider-container {
     position: relative;
-    max-width: 1100px; 
+    max-width: 1200px;
     margin: 0 auto;
     padding: 0 60px;
 }
+
+.servicos-wrapper {
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.servicos-wrapper::-webkit-scrollbar {
+    display: none;
+}
+
+.servicos-track {
+    display: flex;
+    gap: 40px;
+    padding: 0 10px; /* Pequeno padding para evitar que a sombra seja cortada */
+}
+
+/* NOVO ESTILO PARA OS CARDS UNIFICADOS */
+.servico-card {
+    flex: 0 0 31%; /* Cada card ocupa cerca de 1/3 do espaço, permitindo ver os outros */
+    scroll-snap-align: center;
+    background-color: var(--cor-azul-escuro);
+    border-radius: 15px;
+    overflow: hidden; /* Garante que a imagem respeite as bordas arredondadas */
+    display: flex;
+    flex-direction: column;
+}
+
+.servico-card-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.servico-card-content {
+    padding: 25px;
+    border: 1px solid var(--cor-dourado);
+    border-top: none;
+    border-radius: 0 0 15px 15px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Faz esta parte crescer para preencher o espaço */
+}
+
+.servico-card-content h3 {
+    color: var(--cor-branca);
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.servico-card-content p {
+    color: var(--cor-cinza-azulado);
+    font-size: 0.9rem;
+    flex-grow: 1; /* Empurra o botão para baixo */
+}
+
+/* ESTILO ATUALIZADO PARA O BOTÃO "SAIBA MAIS" */
+.btn-card-saiba-mais {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 8px 20px;
+    background-color: transparent;
+    color: var(--cor-dourado);
+    text-decoration: none;
+    font-weight: 500;
+    border: 1px solid var(--cor-dourado);
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    align-self: center; /* Centraliza o botão */
+}
+
+.btn-card-saiba-mais:hover {
+    background-color: var(--cor-dourado);
+    color: var(--cor-azul-escuro);
+}
+
 /* Estilos para os Botões (Setas) */
 .slider-btn {
     position: absolute;
@@ -308,74 +420,12 @@ p {
 }
 .prev-btn { left: 0; }
 .next-btn { right: 0; }
-.servicos-wrapper {
-    display: flex;
-    overflow-x: scroll;
-    scroll-snap-type: x mandatory;
-    scroll-behavior: smooth;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-.servicos-wrapper::-webkit-scrollbar {
-    display: none;
-}
-
-.servicos-track {
-    display: flex;
-    gap: 40px;
-}
-
-.servico-item-wrapper {
-    flex: 0 0 100%;
-    display: flex;
-    align-items: center;
-    gap: 40px;
-    scroll-snap-align: center;
-}
-
-.servico-item, .servico-image {
-    flex: 1;
-}
-
-.servico-item {
-    border: 2px solid var(--cor-dourado);
-    padding: 30px;
-    border-radius: 15px;
-    height: 320px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    text-align: left;
-}
-
-
-.servico-item h3 {
-    color: var(--cor-branca);
-    margin-bottom: 15px;
-    font-size: 1.8rem;
-}
-
-.servico-item p {
-    color: var(--cor-cinza-azulado);
-    font-size: 1rem;
-}
-
-
-.servico-image img {
-    width: 100%;
-    height: 320px;
-    object-fit: cover;
-    border-radius: 85% 15% 77% 23% / 26% 83% 17% 74%;
-    border: 5px solid var(--cor-verde);
-}
 
 /* Estilos para os Pontinhos */
 .slider-dots {
     text-align: center;
     padding-top: 30px;
 }
-
 .dot {
     height: 12px;
     width: 12px;
@@ -387,7 +437,6 @@ p {
     transition: background-color 0.3s;
     border: none;
 }
-
 .dot.active {
     background-color: var(--cor-branca);
 }
@@ -415,7 +464,10 @@ footer {
     color: var(--cor-cinza-azulado);
     padding: 60px 5%;
 }
-
+.footer-logo {
+    max-width: 120px; /* Define a largura máxima do logo */
+    margin-bottom: 20px; /* Adiciona um espaço abaixo do logo */
+    }
 .footer-container {
     display: flex;
     justify-content: space-between;
@@ -443,6 +495,24 @@ footer {
 .footer-bottom {
     text-align: center;
     margin-top: 40px;
+}
+/* --- Estilos para a assinatura "Desenvolvido por" no rodapé --- */
+
+.desenvolvido-por {
+    display: flex; /* Alinha os itens (texto e imagem) lado a lado */
+    justify-content: center; /* Centraliza o grupo no meio do rodapé */
+    align-items: center; /* Alinha verticalmente o texto e a imagem */
+    gap: 10px; /* Adiciona um pequeno espaço entre o texto e a imagem */
+    margin-top: 15px; /* Adiciona um espaço acima */
+}
+
+.desenvolvido-por p {
+    margin: 0; /* Remove qualquer margem padrão do parágrafo */
+    font-size: 0.9rem; /* Tamanho da fonte um pouco menor */
+}
+
+.logo-desenvolvedor {
+    max-height: 100px; /* Define a altura máxima do logo, diminuindo o seu tamanho */
 }
 
 
@@ -536,6 +606,7 @@ footer {
         text-align: center;
     }
     
+    
     /* --- CORREÇÃO DO SLIDER DE SERVIÇOS --- */
     .slider-container {
         padding: 0; /* Remove padding lateral em mobile */
@@ -566,10 +637,13 @@ footer {
         font-size: 20px;
     }
     
+    
     /* Afasta as setas das bordas da tela */
     .prev-btn { left: 10px; }
     .next-btn { right: 10px; }
+    
 }
+
 
 @media (max-width: 576px) {
     /* Ajustes finos para telemóveis muito pequenos */
@@ -578,5 +652,276 @@ footer {
 
     .logo-hero {
         max-height: 120px;
+    }
+}
+/* ------------------- */
+/* ESTILOS ATUALIZADOS DO MODAL/POPUP DE CONTATO */
+/* ------------------- */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.modal-overlay.visible {
+    display: flex;
+    opacity: 1;
+}
+
+.modal-content {
+    background-color: #f0f5fb;
+    padding: 40px;
+    border-radius: 15px;
+    max-width: 900px;
+    width: 90%;
+    position: relative;
+    box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+    transform: scale(0.9);
+    transition: transform 0.4s ease;
+}
+
+.modal-overlay.visible .modal-content {
+    transform: scale(1);
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 28px;
+    color: var(--cor-cinza-azulado);
+    cursor: pointer;
+}
+
+.modal-content .form-container {
+    display: flex;
+    gap: 40px;
+    align-items: center;
+}
+.modal-content .form-info { 
+    flex: 1; 
+    text-align: left; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* Letra do título diminuída */
+.modal-content .form-info h2 { 
+    color: var(--cor-azul-escuro); 
+    font-size: 1.8rem; /* << LETRA DIMINUÍDA */
+    font-weight: 700;
+}
+
+.modal-content .form-info p { 
+    color: #555; 
+    margin-top: 10px;
+}
+
+/* Container da imagem para posicionar os efeitos */
+.form-info-image-wrapper {
+    position: relative; /* Essencial para os efeitos ::before e ::after */
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.modal-content .form-info img { 
+    width: 85%; /* Um pouco menor para os efeitos aparecerem */
+    border-radius: 73% 27% 56% 44% / 54% 30% 70% 46%; 
+    position: relative;
+    z-index: 2; /* Garante que a imagem fique na frente dos efeitos */
+}
+
+/* Efeito 1: Círculo azul claro no fundo */
+.form-info-image-wrapper::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: 0;
+    width: 100px;
+    height: 100px;
+    background-color: #cce3ff; /* Azul claro */
+    border-radius: 50%;
+    z-index: 1; /* Atrás da imagem */
+}
+
+/* Efeito 2: Pontinhos no fundo */
+.form-info-image-wrapper::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: 0;
+    width: 100px;
+    height: 100px;
+    /* Truque para criar pontinhos com CSS */
+    background-image: radial-gradient(var(--cor-cinza-azulado) 2px, transparent 2px);
+    background-size: 15px 15px;
+    z-index: 1; /* Atrás da imagem */
+}
+
+/* Estilos dos campos do formulário */
+.modal-content .form-group { margin-bottom: 15px; }
+.modal-content .form-group label { display: block; margin-bottom: 5px; font-weight: 500; font-size: 0.9rem; }
+.modal-content .form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--cor-cinza-azulado);
+    border-radius: 8px;
+    font-size: 1rem;
+}
+.modal-content .form-group-split { display: flex; gap: 15px; }
+.modal-content .form-submit-btn {
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+    background-color: var(--cor-dourado); /* Cor do botão alterada */
+    color: var(--cor-azul-escuro); /* Cor do texto do botão */
+}
+.modal-content .form-submit-btn:hover {
+    background-color: var(--cor-dourado-escuro); /* Um dourado um pouco mais escuro no hover */
+}
+
+/* Estilos para os botões de seleção (WhatsApp/Ligação) */
+.radio-group {
+    display: flex;
+    gap: 10px;
+}
+
+.radio-button {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #FFF;
+    color: var(--cor-cinza-azulado);
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+}
+
+.radio-button.active {
+    background-color: #dbe9f9; /* Azul claro para o botão ativo */
+    color: var(--cor-verde);
+    border-color: var(--cor-verde);
+}
+
+/* Responsividade do Modal */
+@media (max-width: 768px) {
+    .modal-content .form-container {
+        flex-direction: column;
+        gap: 30px;
+    }
+    .modal-content .form-info img {
+        width: 100%;
+    }
+}
+/* ------------------- */
+/* ESTILOS ADICIONAIS (PASSO FINAL) */
+/* ------------------- */
+
+/* --- Ícones de Redes Sociais no Rodapé --- */
+.social-icons {
+    display: flex;
+    gap: 20px;
+}
+.social-icons a {
+    color: var(--cor-cinza-azulado);
+    font-size: 24px; /* Tamanho do ícone */
+    transition: color 0.3s, transform 0.3s;
+}
+.social-icons a:hover {
+    color: var(--cor-branca);
+    transform: scale(1.2);
+}
+
+/* --- Botão "Saiba Mais" nos Cards do Slider --- */
+.btn-card-saiba-mais {
+    display: inline-block;
+    margin-top: auto; /* Empurra o botão para o final do card */
+    padding: 8px 20px;
+    background-color: transparent;
+    color: var(--cor-branca);
+    text-decoration: none;
+    font-weight: bold;
+    border: 2px solid var(--cor-dourado);
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+.btn-card-saiba-mais:hover {
+    background-color: var(--cor-dourado);
+}
+
+/* --- Estilos da Nova Página de Serviços --- */
+.servicos-detalhe-header {
+    background-color: var(--cor-branca);
+    padding-bottom: 40px;
+}
+.servicos-nav {
+    margin-top: 40px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 15px 0;
+}
+.servicos-nav a {
+    text-decoration: none;
+    color: var(--cor-azul-escuro);
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+}
+.servicos-nav a:hover {
+    background-color: #f0f5fb;
+    color: var(--cor-verde);
+}
+
+.servico-detalhe {
+    padding: 100px 5%;
+}
+.servico-detalhe-content {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.servico-detalhe-content.reverse {
+    flex-direction: row-reverse; /* Inverte a ordem para variar o layout */
+}
+.servico-detalhe-texto {
+    flex: 1;
+    text-align: left;
+}
+.servico-detalhe-imagem {
+    flex: 1;
+}
+.servico-detalhe-imagem img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* --- Responsividade para a página de serviços --- */
+@media (max-width: 992px) {
+    .servico-detalhe-content,
+    .servico-detalhe-content.reverse {
+        flex-direction: column;
     }
 }

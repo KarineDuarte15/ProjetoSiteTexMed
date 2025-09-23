@@ -6,6 +6,10 @@
     <title>TaxMed - Assessoria Médica Especializada</title>
     <link rel="icon" type="image/x-icon" href="assets/LogoTaxMedAzul.ico">
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
 
@@ -14,48 +18,38 @@
             <a href="#home">
                 <img src="assets/LogoTaxMedVerde.png" alt="Logotipo TaxMed" class="logo">
             </a>
-            <ul>
-                <li><a href="#home">Início</a></li>
-                <li><a href="#quem-somos">Quem Somos</a></li>
-                <li><a href="#sobre">Sobre Nós</a></li>
-                <li><a href="#servicos">Serviços</a></li>
-                <li><a href="#como-ajudamos">Como Ajudamos</a></li>
-                <li><a href="#blog">Blog</a></li>
-                <li><a href="#contato" class="nav-cta">Fale Conosco</a></li>
+            <ul id="nav-list">
+                <li><a href="index.html">Início</a></li>
+                <li><a href="quemsomos.html">Quem Somos</a></li>
+                <li><a href="servicos.html">Serviços</a></li>
+                <li><a href="contato.html">Contato</a></li>
+                <li><a href="blog.html">Blog</a></li>
+                <li><button class="nav-cta" id="openModalNavBtn">Fale Conosco</button></li>
             </ul>
+            <button class="hamburger" id="hamburger-button">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
         </nav>
     </header>
 
     <main>
         <section id="home" class="hero-section">
-            <div class="hero-content-wrapper">
-                <div class="hero-text-content">
-                    <img src="assets/LogoTaxMedAzul.png" alt="Logotipo TaxMed" class="logo-hero">
-                    <h1>Cuidamos da saúde da sua empresa para que você cuide da saúde dos seus clientes.</h1>
-                    <p>Diagnóstico fiscal express, redução de impostos e soluções personalizadas para profissionais da saúde e prestadores de serviço.</p>
-                    <a href="#contato" class="cta-button">Agende sua consultoria gratuita</a>
-                </div>
-                <div class="hero-image-content">
-                    <img src="assets/hero-image.gif" alt="Profissional da saúde revisando documentos fiscais" class="hero-gif">
-                </div>
+            <video class="hero-video" autoplay loop muted playsinline>
+                <source src="assets/hero-video.mp4" type="video/mp4">
+                O seu navegador não suporta vídeos em HTML5.
+            </video>
+
+            <div class="hero-text-content">
+                <img src="assets/LogoTaxMedAzul.png" alt="Logotipo TaxMed" class="logo-hero">
+                <h1>Cuidamos da saúde da sua empresa para que você cuide da saúde dos seus clientes.</h1>
+                <p>Diagnóstico fiscal express, redução de impostos e soluções personalizadas para profissionais da saúde e prestadores de serviço.</p>
+                <a href="https://wa.me/5585987411585" class="cta-button animated-button">Agende sua consultoria gratuita</a>
             </div>
         </section>
 
-          
 
-        <section id="quem-somos">
-            <div class="quem-somos-container">
-                <div class="quem-somos-image">
-                    <img src="assets/Pag2.png" alt="Especialista da TaxMed analisando gráficos">
-                </div>
-                <div class="quem-somos-text">
-                    <h2>Quem Somos</h2>
-                    <p>
-                        Na TaxMed, enxergamos cada empresa como um paciente em busca de saúde plena. Somos uma equipe de especialistas em contabilidade, gestão fiscal e estratégia empresarial dedicada a diagnosticar, prescrever e acompanhar o tratamento tributário ideal para prestadores de serviços e profissionais da saúde. Transformamos burocracia em eficiência por meio de tecnologia de ponta e atendimento personalizado, garantindo mais segurança e liberdade para você focar no crescimento do seu negócio.
-                    </p>
-                </div>
-            </div>
-        </section>
 
         <section id="sobre">
             <h2>Nossa Missão é a Saúde do Seu Negócio</h2>
@@ -64,14 +58,14 @@
                     <img src="assets/Pag3.1.png" alt="Mãos escrevendo em um relatório de missão">
                     <div class="card-content">
                         <h3>Missão</h3>
-                        <p>Oferecer soluções contábeis, fiscais e estratégicas de excelência para profissionais da saúde, garantindo empresas saudáveis e sustentáveis.</p>
+                        <p>Oferecer soluções contábeis, fiscais e estratégicas de excelência para profissionais da saúde.</p>
                     </div>
                 </div>
                 <div class="sobre-card">
                     <img src="assets/Pag3.2.png" alt="Equipe colaborando em um projeto de visão estratégica">
                     <div class="card-content">
                         <h3>Visão</h3>
-                        <p>Ser referência nacional em assessoria contábil e estratégica, reconhecida pela confiança, inovação e impacto positivo na jornada empreendedora.</p>
+                        <p>Ser referência nacional em assessoria contábil e estratégica, reconhecida pela confiança e inovação.</p>
                     </div>
                 </div>
                 <div class="sobre-card">
@@ -86,60 +80,57 @@
 
         <section id="servicos" class="section-dark">
             <h2>Soluções Sob Medida Para Você</h2>
-                <div class="slider-container">
-                    <div class="servicos-wrapper">
-                        <div class="servicos-track">
-                            <div class="servico-item-wrapper">
-                                <div class="servico-image">
-                                    <img src="assets/Pag4.1.jpg" alt="Profissional da saúde revisando documentos fiscais">
-                                </div>
-                                <div class="servico-item">
-                                    <h3>Médicos</h3>
-                                    <p>Planejamento fiscal com Fator R, equiparação hospitalar e otimização de fluxo de caixa para maximizar sua eficiência tributária.</p>
-                                </div>
+            <div class="slider-container">
+                <div class="servicos-wrapper">
+                    <div class="servicos-track">
+                        <div class="servico-card">
+                            <img src="assets/Pag4.1.jpg" alt="Assessoria para Médicos" class="servico-card-img">
+                            <div class="servico-card-content">
+                                <h3>Médicos</h3>
+                                <p>Planejamento fiscal com Fator R, equiparação hospitalar e otimização de fluxo de caixa.</p>
+                                <a href="servicos.html#servicos-medicos" class="btn-card-saiba-mais">Saiba Mais</a>
                             </div>
-                            <div class="servico-item-wrapper">
-                                <div class="servico-image">
-                                    <img src="assets/Pag4.2.jpg" alt="Equipe de construção civil em reunião">
-                                </div>
-                                <div class="servico-item">
-                                    <h3>Construção Civil</h3>
-                                    <p>Estruturação tributária sob o regime RET e Lucro Presumido, identificação de oportunidades de crédito e incentivos fiscais.</p>
-                                </div>
+                        </div>
+
+                        <div class="servico-card">
+                            <img src="assets/Pag4.2.jpg" alt="Assessoria para Construção Civil" class="servico-card-img">
+                            <div class="servico-card-content">
+                                <h3>Construção Civil</h3>
+                                <p>Estruturação tributária sob o regime RET, identificação de créditos e incentivos fiscais.</p>
+                                <a href="servicos.html#servicos-construcao" class="btn-card-saiba-mais">Saiba Mais</a>
                             </div>
-                            <div class="servico-item-wrapper">
-                                <div class="servico-image">
-                                    <img src="assets/Pag4.3.jpg" alt="Clínica médica moderna">
-                                </div>
-                                <div class="servico-item">
-                                    <h3>Clínicas</h3>
-                                    <p>Definição do melhor regime tributário, automação de faturamento e controle de desempenho financeiro via dashboards.</p>
-                                </div>
+                        </div>
+
+                        <div class="servico-card">
+                            <img src="assets/Pag4.3.jpg" alt="Assessoria para Clínicas" class="servico-card-img">
+                            <div class="servico-card-content">
+                                <h3>Clínicas</h3>
+                                <p>Definição do melhor regime tributário, automação de faturamento e dashboards financeiros.</p>
+                                <a href="servicos.html#servicos-clinicas" class="btn-card-saiba-mais">Saiba Mais</a>
                             </div>
                         </div>
                     </div>
-
-                     <button class="slider-btn prev-btn" id="prevBtn" aria-label="Anterior">&#10094;</button>
-                     <button class="slider-btn next-btn" id="nextBtn" aria-label="Próximo">&#10095;</button>
-
-                    <div class="slider-dots" id="sliderDots"></div>
                 </div>
+                <button class="slider-btn prev-btn" id="prevBtn" aria-label="Anterior">&#10094;</button>
+                <button class="slider-btn next-btn" id="nextBtn" aria-label="Próximo">&#10095;</button>
+                <div class="slider-dots" id="sliderDots"></div>
+            </div>
         </section>
 
         <section id="contato-final" class="cta-final">
             <h2>Transforme a saúde da sua empresa hoje mesmo.</h2>
-            <a href="#contato" class="cta-button">Fale com um especialista</a>
+            <a href="https://wa.me/5585987411585" class="cta-button">Fale com um especialista</a>
         </section>
-
     </main>
 
     <footer id="contato">
         <div class="footer-container">
+            <div>
+                <img src="assets/LogoTaxMedAzul.png" alt="Logotipo TaxMed" class="footer-logo">
+            </div>
             <div class="footer-col">
-                <h3>TaxMed</h3>
-                <p>Assessoria Médica Especializada</p>
-                <p>Endereço: Sua Rua, 123, Cidade, Estado</p>
-                <p>Telefone: (XX) 99999-9999</p>
+                <p>Endereço: Avenida Pontes Vieira, 2401- Dionísio Torres- Sala C, Fortaleza- CE</p>
+                <p>Telefone: (85) 98741-1585</p>
                 <p>Email: contato@taxmed.com.br</p>
             </div>
             <div class="footer-col">
@@ -151,13 +142,71 @@
             </div>
             <div class="footer-col">
                 <h3>Siga-nos</h3>
-                <p>Instagram | LinkedIn | YouTube</p>
+                <div class="social-icons">
+                    <a href="https://w.app/taxmed" target="_blank" aria-label="WhatsApp"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="https://www.instagram.com/taxmed.assessoria/" target="_blank" aria-label="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                </div>
             </div>
         </div>
         <div class="footer-bottom">
             <p>&copy; 2025 TaxMed. Todos os direitos reservados.</p>
+            <div class="desenvolvido-por">
+                <p>Desenvolvido por</p>
+                <img src="assets/karine-duarte.png" alt="Karine Duarte Developer" class="logo-desenvolvedor">
+            </div>
         </div>
     </footer>
+
+    <div class="modal-overlay" id="contactModal">
+        <div class="modal-content">
+            <button class="modal-close-btn" id="closeModalBtn" aria-label="Fechar">&times;</button>
+            
+            <div class="form-container">
+                <div class="form-info">
+                    <h2>Ficou com alguma dúvida?</h2>
+                    <p>Preencha as informações ao lado que em breve entraremos em contato com você.</p>
+                    <div class="form-info-image-wrapper">
+                        <img src="assets/Pag5.png" alt="Atendente pronta para ajudar">
+                    </div>
+                </div>
+                <form class="contact-form" action="/enviar-dados" method="POST">
+                    <div class="form-group-split">
+                        <div class="form-group">
+                            <label for="modal-nome">Nome</label>
+                            <input type="text" id="modal-nome" name="nome" placeholder="Nome completo" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="modal-celular">Celular</label>
+                            <input type="tel" id="modal-celular" name="celular" placeholder="(DDD) 00000-0000" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="modal-email">Qual é o seu e-mail?</label>
+                        <input type="email" id="modal-email" name="email" placeholder="seu.email@mail.com.br" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="modal-cidade">Em qual cidade sua empresa está situada?</label>
+                        <input type="text" id="modal-cidade" name="cidade" placeholder="Ex: São Paulo">
+                    </div>
+                    <div class="form-group">
+                        <label for="modal-atividade">Descrição da atividade que você exercerá na empresa</label>
+                        <input type="text" id="modal-atividade" name="atividade" placeholder="Ex: programador, consultor de marketing">
+                    </div>
+                    <div class="form-group">
+                        <label>Como prefere que entremos em contato com você?</label>
+                        <div class="radio-group">
+                            <button type="button" class="radio-button active" data-value="whatsapp">Via WhatsApp</button>
+                            <button type="button" class="radio-button" data-value="ligacao">Via Ligação</button>
+                            <input type="hidden" id="preferencia_contato" name="preferencia_contato" value="whatsapp">
+                        </div>
+                    </div>
+                    <button type="submit" class="cta-button form-submit-btn">Agendar Consultoria</button>
+                    
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
     <script src="script.js"></script>
 </body>
