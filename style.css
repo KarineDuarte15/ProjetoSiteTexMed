@@ -268,12 +268,11 @@ p {
 }
 
 /* ------------------- */
-/* SEÇÃO SERVIÇOS - CARROSSEL AUTOMÁTICO */
+/* SEÇÃO SERVIÇOS - SLIDER INTERATIVO COM PONTINHOS */
 /* ------------------- */
 #servicos.section-dark {
     background-color: var(--cor-azul-escuro);
     padding: 80px 0;
-    overflow: hidden; /* Essencial para esconder o conteúdo que sai da tela */
 }
 
 #servicos.section-dark h2 {
@@ -282,47 +281,53 @@ p {
     padding: 0 5%;
 }
 
-.servicos-wrapper {
-    width: 100%;
+.slider-container {
     position: relative;
+    max-width: 1100px; 
+    margin: 0 auto;
 }
 
-/* Criamos a animação de rolagem */
-@keyframes scroll-animation {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); } /* Move até o início da parte duplicada */
+.servicos-wrapper {
+    display: flex;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.servicos-wrapper::-webkit-scrollbar {
+    display: none;
 }
 
 .servicos-track {
     display: flex;
     gap: 40px;
-    width: calc(640px * 6); /* (Largura do card + gap) * número total de cards */
-    animation: scroll-animation 40s linear infinite; /* Aplica a animação */
-}
-
-/* Pausa a animação quando o mouse está sobre o carrossel */
-.servicos-wrapper:hover .servicos-track {
-    animation-play-state: paused;
 }
 
 .servico-item-wrapper {
-    flex: 0 0 600px; /* Largura fixa para cada card */
+    flex: 0 0 100%;
     display: flex;
     align-items: center;
     gap: 40px;
+    scroll-snap-align: center;
+}
+
+.servico-item, .servico-image {
+    flex: 1;
 }
 
 .servico-item {
-    flex: 1;
     border: 2px solid var(--cor-dourado);
     padding: 30px;
     border-radius: 15px;
-    height: 320px; /* Altura fixa para alinhar */
+    height: 320px;
     display: flex;
     flex-direction: column;
     justify-content: center;
     text-align: left;
 }
+
 
 .servico-item h3 {
     color: var(--cor-branca);
@@ -335,16 +340,35 @@ p {
     font-size: 1rem;
 }
 
-.servico-image {
-    flex: 1;
-}
 
 .servico-image img {
     width: 100%;
     height: 320px;
     object-fit: cover;
     border-radius: 85% 15% 77% 23% / 26% 83% 17% 74%;
-    border: 5px solid var(--cor-dourado);
+    border: 5px solid var(--cor-verde);
+}
+
+/* Estilos para os Pontinhos */
+.slider-dots {
+    text-align: center;
+    padding-top: 30px;
+}
+
+.dot {
+    height: 12px;
+    width: 12px;
+    margin: 0 5px;
+    background-color: var(--cor-cinza-azulado);
+    border-radius: 50%;
+    display: inline-block;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    border: none;
+}
+
+.dot.active {
+    background-color: var(--cor-branca);
 }
 /* ------------------- */
 /* CTA FINAL E RODAPÉ */

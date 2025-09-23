@@ -1,30 +1,73 @@
-// DOCUMENTAÇÃO: Script para Navegação Suave
-// Este script garante que, ao clicar num link do menu, a página role suavemente
-// até à seção correspondente, em vez de saltar instantaneamente.
 
 document.addEventListener('DOMContentLoaded', function() {
-    // 1. Seleciona todos os links de navegação que apontam para uma âncora (#)
-    const navLinks = document.querySelectorAll('.main-nav a[href^="#"]');
+    const sliderContainer = document.querySelector('.slider-container');
+    if (!sliderContainer) return; // Se o slider não existir, não faz nada
 
-    // 2. Adiciona um "ouvinte" de evento de clique a cada um desses links
-    navLinks.forEach(link => {
-        link.addEventListener('click', function(event) {
-            // a. Previne o comportamento padrão do link (o salto brusco)
-            event.preventDefault();
+    const track = sliderContainer.querySelector('.servicos-track');
+    const items = Array.from(track.children);
+    const dotsNav = document.getElementById('sliderDots');
+    const autoPlayDelay = 10000; // Tempo em milissegundos (10000 = 10 segundos)
+    let autoPlayInterval;
 
-            // b. Pega o ID da seção alvo (ex: '#sobre') do atributo href do link
-            const targetId = this.getAttribute('href');
 
-            // c. Encontra o elemento da seção no documento HTML
-            const targetSection = document.querySelector(targetId);
+    items.forEach((item, index) => {
+        const dot = document.createElement('button');
+        dot.classList.add('dot');
+        if (index === 0) dot.classList.add('active');
+        dot.addEventListener('click', () => moveToSlide(index));
+        dotsNav.appendChild(dot);
+    });
 
-            // d. Se a seção existir, rola a página suavemente até ela
-            if (targetSection) {
-                targetSection.scrollIntoView({
-                    behavior: 'smooth', // Define a animação como suave
-                    block: 'start'      // Alinha o topo da seção com o topo da janela de visualização
-                });
-            }
+    const dots = Array.from(dotsNav.children);
+
+    const moveToSlide = (targetIndex) => {
+        const itemWidth = items[0].getBoundingClientRect().width;
+        const gap = parseInt(window.getComputedStyle(track).gap) || 0;
+        track.parentElement.scrollLeft = targetIndex * (itemWidth + gap);
+    };
+    
+
+    const updateDots = () => {
+        const itemWidth = items[0].getBoundingClientRect().width;
+        const gap = parseInt(window.getComputedStyle(track).gap) || 0;
+        const scrollLeft = track.parentElement.scrollLeft;
+        const currentIndex = Math.round(scrollLeft / (itemWidth + gap));
+        
+        dots.forEach((dot, index) => {
+            dot.classList.toggle('active', index === currentIndex);
+        });
+    };
+    track.parentElement.addEventListener('scroll', updateDots);
+
+    const startAutoPlay = () => {
+        autoPlayInterval = setInterval(() => {
+            const itemWidth = items[0].getBoundingClientRect().width;
+            const gap = parseInt(window.getComputedStyle(track).gap) || 0;
+            const scrollLeft = track.parentElement.scrollLeft;
+            let currentIndex = Math.round(scrollLeft / (itemWidth + gap));
+            
+            // Avança para o próximo slide ou volta ao primeiro se estiver no final
+            const nextIndex = (currentIndex + 1) % items.length;
+            moveToSlide(nextIndex);
+        }, autoPlayDelay);
+    };
+
+    const stopAutoPlay = () => {
+        clearInterval(autoPlayInterval);
+    };
+
+    dots.forEach(dot => {
+        dot.addEventListener('click', () => {
+            stopAutoPlay();
+            startAutoPlay(); // Opcional: se quiser que o auto-play continue após o clique
         });
     });
+
+    // Pausa o auto-play quando o rato está sobre o slider
+    sliderContainer.addEventListener('mouseenter', stopAutoPlay);
+    // Retoma o auto-play quando o rato sai do slider
+    sliderContainer.addEventListener('mouseleave', startAutoPlay);
+
+    // Inicia o auto-play quando a página carrega
+    startAutoPlay();
 });
