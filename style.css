@@ -480,7 +480,7 @@ footer {
     .main-nav ul {
         display: none;
         position: absolute;
-        top: 80px; /* Altura do header */
+        top: 80px;
         left: 0;
         width: 100%;
         background-color: var(--cor-azul-escuro);
@@ -516,24 +516,15 @@ footer {
     }
     
     .hero-image-content {
-        display: none; /* Em ecrãs muito pequenos, é melhor esconder a imagem decorativa */
+        display: none;
     }
     
     .logo-hero, .cta-button {
-        align-self: center; /* Centraliza logo e botão */
+        align-self: center;
     }
 
-    /* --- SEÇÃO QUEM SOMOS --- */
-    .quem-somos-container {
-        flex-direction: column;
-        gap: 40px;
-    }
-
-    .quem-somos-text {
-        text-align: center;
-    }
-
-    /* --- SEÇÃO SOBRE, SERVIÇOS E RODAPÉ --- */
+    /* --- SEÇÃO QUEM SOMOS, SOBRE, SERVIÇOS E RODAPÉ --- */
+    .quem-somos-container,
     .sobre-container,
     .servicos-container,
     .footer-container {
@@ -544,32 +535,40 @@ footer {
     .footer-container {
         text-align: center;
     }
-    .servicos-wrapper {
-        padding: 0 20px; /* Ajusta o padding para telas menores */
+    
+    /* --- CORREÇÃO DO SLIDER DE SERVIÇOS --- */
+    .slider-container {
+        padding: 0; /* Remove padding lateral em mobile */
     }
 
     .servico-item-wrapper {
-        flex-direction: column; /* Empilha texto e imagem em telas menores */
-        width: 300px; /* Largura menor para cada item em mobile */
-        max-width: 95%; /* Garante que caiba bem na tela */
-        padding: 15px;
+        flex-direction: column; /* ESSENCIAL: Empilha imagem e texto */
         gap: 20px;
-        align-items: center; /* Centraliza itens */
+    }
+    
+    .servico-image {
+        width: 100%;
     }
 
     .servico-image img {
-        height: 200px; /* Altura menor para imagens em mobile */
-        border-radius: 50%; /* Em mobile, talvez um círculo simples seja melhor */
+        height: 220px; /* Altura ajustada para mobile */
     }
 
     .servico-item {
-        padding: 20px;
-        text-align: center;
+        height: auto; /* Altura automática para o texto */
+        width: 100%;
+        padding: 25px;
     }
 
-    .servico-item h3 {
-        font-size: 1.5rem;
+    .slider-btn {
+        width: 40px; /* Setas um pouco menores */
+        height: 40px;
+        font-size: 20px;
     }
+    
+    /* Afasta as setas das bordas da tela */
+    .prev-btn { left: 10px; }
+    .next-btn { right: 10px; }
 }
 
 @media (max-width: 576px) {
@@ -580,5 +579,4 @@ footer {
     .logo-hero {
         max-height: 120px;
     }
- 
 }
