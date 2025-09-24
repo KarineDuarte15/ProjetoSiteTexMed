@@ -4,77 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contato - TaxMed</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body>
 
     <header class="main-header">
-        <nav class="main-nav">
-            <a href="#home">
-                <img src="assets/LogoTaxMedVerde.png" alt="Logotipo TaxMed" class="logo">
-            </a>
-            <ul id="nav-list">
-                <li><a href="index.html">Início</a></li>
-                <li><a href="quemsomos.html">Quem Somos</a></li>
-                <li><a href="servicos.html">Serviços</a></li>
-                <li><a href="contato.html">Contato</a></li>
-                <li><a href="blog.html">Blog</a></li>
-                <li><button class="nav-cta" id="openModalNavBtn">Fale Conosco</button></li>
-            </ul>
-            <button class="hamburger" id="hamburger-button">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-        </nav>
-    </header>
+        </header>
 
     <main>
-        <section class="form-section">
-            <div class="form-container">
-                <div class="form-info">
-                    <h2>Ficou com alguma dúvida?</h2>
-                    <p>Preencha as informações ao lado que em breve entraremos em contato com você.</p>
-                    <img src="assets/Pag5.png" alt="Atendente pronta para ajudar"> 
+        <section class="contact-page-section">
+            <div class="contact-page-wrapper">
+                <div class="contact-details">
+                    <h3 class="contact-subtitle">Contato</h3>
+                    <h2>Entre em contato</h2>
+                    <p>Entre em contato conosco agora para obter suporte contábil especializado.</p>
+                    
+                    <div class="contact-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div>
+                            <strong>Endereço</strong>
+                            <span>Av. Pontes Vieira, 2401 - Altos - Cep: 60130-241 Fortaleza / CE</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <div>
+                            <strong>Email</strong>
+                            <span>atendimento@taxmed.com.br</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <div>
+                            <strong>Telefone</strong>
+                            <span>(85) 3122-1877</span>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fa-brands fa-whatsapp"></i>
+                        <div>
+                            <strong>WhatsApp</strong>
+                            <span>(85) 98741-2322</span>
+                        </div>
+                    </div>
                 </div>
-                <form class="contact-form" action="/enviar-dados" method="POST">
-                    <div class="form-group-split">
-                        <div class="form-group">
-                            <label for="nome">Nome</label>
-                            <input type="text" id="nome" name="nome" placeholder="Nome completo" required>
+
+                <div class="contact-form-wrapper">
+                    <h3>Envie uma mensagem</h3>
+                    <form class="contact-form" action="/enviar-dados" method="POST">
+                        <div class="form-group-split">
+                            <div class="form-group"><input type="text" name="nome" placeholder="Nome" required></div>
+                            <div class="form-group"><input type="email" name="email" placeholder="Email" required></div>
                         </div>
-                        <div class="form-group">
-                            <label for="celular">Celular</label>
-                            <input type="tel" id="celular" name="celular" placeholder="(DDD) 00000-0000" required>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Qual é o seu e-mail?</label>
-                        <input type="email" id="email" name="email" placeholder="seu.email@mail.com.br" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="cidade">Em qual cidade sua empresa está situada?</label>
-                        <input type="text" id="cidade" name="cidade" placeholder="Ex: São Paulo">
-                    </div>
-                    <div class="form-group">
-                        <label for="atividade">Descrição da atividade que você exercerá na empresa</label>
-                        <input type="text" id="atividade" name="atividade" placeholder="Ex: programador, consultor de marketing">
-                    </div>
-                    <div class="form-group">
-                        <label>Como prefere que entremos em contato com você?</label>
-                        <div class="radio-group">
-                            <button type="button" class="radio-button active" data-value="whatsapp">Via WhatsApp</button>
-                            <button type="button" class="radio-button" data-value="ligacao">Via Ligação</button>
-                            <input type="hidden" id="preferencia_contato" name="preferencia_contato" value="whatsapp">
-                        </div>
-                    </div>
-                    <button type="submit" class="cta-button form-submit-btn">Enviar</button>
-                </form>
+                        <div class="form-group"><input type="text" name="celular" placeholder="Telefone" required></div>
+                        <div class="form-group"><input type="text" name="assunto" placeholder="Assunto" required></div>
+                        <div class="form-group"><textarea name="mensagem" placeholder="Mensagem" rows="5" required></textarea></div>
+                        <button type="submit" class="cta-button form-submit-btn">Enviar</button>
+                    </form>
+                </div>
             </div>
+        </section>
+
+        <section class="map-section">
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3981.332308975253!2d-38.5023589!3d-3.7380921!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7c7488849f7b151%3A0x6b81313e9c5608b6!2sAv.%20Pontes%20Vieira%2C%202401%20-%20Dionisio%20Torres%2C%20Fortaleza%20-%20CE%2C%2060130-241!5e0!3m2!1spt-BR!2sbr!4v1695578888888!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
         </section>
     </main>
 
@@ -111,6 +107,23 @@
             </div>
         </div>
     </footer>
+
+    <div class="whatsapp-widget">
+        <div class="whatsapp-chat-box">
+            <div class="chat-header">
+                <strong>WhatsApp</strong>
+                <button class="chat-close-btn">&times;</button>
+            </div>
+            <div class="chat-body">
+                <p>Olá! Envie uma mensagem e fale conosco.</p>
+                <textarea id="whatsapp-message" placeholder="Escreva sua mensagem..."></textarea>
+                <button class="chat-send-btn">Abrir WhatsApp</button>
+            </div>
+        </div>
+        <button class="whatsapp-float-btn" title="Olá, precisa de ajuda?">
+            <i class="fa-brands fa-whatsapp"></i>
+        </button>
+    </div>    
 
     <script src="script.js"></script>
 </body>

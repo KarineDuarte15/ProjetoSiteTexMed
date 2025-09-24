@@ -134,3 +134,50 @@ if (radioGroup) {
         });
     });
 }
+// --- CÓDIGO DO BOTÃO FLUTUANTE DE WHATSAPP ---
+document.addEventListener('DOMContentLoaded', function() {
+    const floatBtn = document.querySelector('.whatsapp-float-btn');
+    const chatBox = document.querySelector('.whatsapp-chat-box');
+    const closeBtn = document.querySelector('.chat-close-btn');
+    const sendBtn = document.querySelector('.chat-send-btn');
+    const messageBox = document.getElementById('whatsapp-message');
+
+    if (floatBtn) {
+        floatBtn.addEventListener('click', () => {
+            chatBox.classList.toggle('visible');
+        });
+
+        closeBtn.addEventListener('click', () => {
+            chatBox.classList.remove('visible');
+        });
+
+        sendBtn.addEventListener('click', () => {
+            const numero = '5585987411585'; // << COLOQUE AQUI O SEU NÚMERO DE WHATSAPP
+            const mensagem = encodeURIComponent(messageBox.value);
+            const url = `https://wa.me/${numero}?text=${mensagem}`;
+            window.open(url, '_blank');
+        });
+    }
+});
+//--- CÓDIGO DO FORMULÁRIO DE CONTATO (QUE USA AJAX PARA ENVIAR OS DADOS) ---
+document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contactForm');
+    if (!contactForm) return;
+
+    contactForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const formData = new FormData(contactForm);
+        const xhr = new XMLHttpRequest();
+        xhr.open('POST', contactForm.action, true);
+        xhr.onload = function() {
+            if (xhr.status === 200) {
+                alert('Formulário enviado com sucesso!');
+                contactForm.reset();
+            } else {
+                alert('Ocorreu um erro ao enviar o formulário.');
+            }
+        };
+        xhr.send(formData);
+    });
+});

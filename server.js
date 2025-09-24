@@ -25,8 +25,8 @@ app.post('/enviar-dados', (req, res) => {
     const transporter = nodemailer.createTransport({
         service: 'gmail', // Vamos usar o Gmail como exemplo
         auth: {
-            user: process.env.EMAIL_USER, // O teu e-mail
-            pass: process.env.EMAIL_PASS, // A tua senha de aplicação
+            user: process.env.EMAIL_USER,
+            pass: process.env.EMAIL_PASS, 
         },
     });
 
