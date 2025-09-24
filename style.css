@@ -1000,3 +1000,134 @@ footer {
     font-weight: bold;
     cursor: pointer;
 }
+/* ------------------- */
+/* ESTILOS DA PÁGINA DE CONTATO (LAYOUT LADO A LADO) */
+/* ------------------- */
+.contact-page-section {
+    padding: 80px 5%;
+}
+.contact-page-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 60px;
+    align-items: flex-start;
+}
+.contact-details, .contact-form-wrapper {
+    flex: 1;
+}
+.contact-subtitle {
+    font-family: 'Times New Roman', serif; /* Exemplo de fonte cursiva */
+    color: var(--cor-dourado);
+    font-weight: 500;
+    margin-bottom: 0;
+    font-size: 1.5rem;
+}
+.contact-details h2 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    text-align: left;
+}
+.contact-details p {
+    text-align: left;
+    margin-bottom: 30px;
+}
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+.contact-item i {
+    font-size: 20px;
+    color: var(--cor-verde);
+    padding: 10px;
+    background-color: #f0f5fb;
+    border-radius: 50%;
+}
+.contact-item strong {
+    display: block;
+}
+.contact-form-wrapper h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+.contact-form-page .form-group-split {
+    display: flex;
+    gap: 15px;
+}
+.contact-form-page .form-group {
+    margin-bottom: 15px;
+    width: 100%;
+}
+.contact-form-page input,
+.contact-form-page textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: var(--fonte-principal);
+}
+.contact-form-page .form-submit-btn {
+    width: auto;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    border: none;
+    cursor: pointer;
+    background-color: var(--cor-dourado);
+    color: white;
+}
+
+/* Estilos para a seção do mapa retangular */
+.map-section {
+    padding: 0; /* Remove padding para o mapa ocupar a largura toda */
+}
+
+.map-section iframe {
+    display: block;
+    width: 100%;
+    filter: grayscale(100%); /* << A LINHA MÁGICA! Deixa o mapa a preto e branco. */
+    transition: filter 0.5s ease; /* Efeito de transição suave */
+}
+
+/* BÓNUS: O mapa volta a ter cor quando o utilizador passa o rato por cima */
+.map-section iframe:hover {
+    filter: grayscale(0%);
+}
+/* Responsividade da página de contato */
+@media (max-width: 768px) {
+    .contact-info-block {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+/* ------------------- */
+/* ESTILOS DA PÁGINA DE OBRIGADO */
+/* ------------------- */
+.thank-you-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh; /* Garante que o conteúdo ocupe uma boa parte da tela */
+    text-align: center;
+}
+
+.thank-you-content .fa-check-circle {
+    font-size: 60px;
+    color: var(--cor-verde);
+    margin-bottom: 20px;
+}
+
+.thank-you-content h1 {
+    font-size: 2.5rem;
+    color: var(--cor-azul-escuro);
+}
+
+.thank-you-content p {
+    font-size: 1.2rem;
+    color: #555;
+    max-width: 500px;
+    margin: 10px auto 0;
+}

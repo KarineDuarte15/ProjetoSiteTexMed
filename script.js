@@ -152,7 +152,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
 
         sendBtn.addEventListener('click', () => {
-            const numero = '5585987411585'; // << COLOQUE AQUI O SEU NÚMERO DE WHATSAPP
+            const numero = '5585987411585'; 
             const mensagem = encodeURIComponent(messageBox.value);
             const url = `https://wa.me/${numero}?text=${mensagem}`;
             window.open(url, '_blank');
