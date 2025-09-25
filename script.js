@@ -1,86 +1,99 @@
-// --- CÓDIGO DO SLIDER (COM SETAS, PONTINHOS E AUTO-PLAY) ---
+// --- CÓDIGO CORRIGIDO DO SLIDER (COM SETAS, PONTINHOS E AUTO-PLAY) ---
 document.addEventListener('DOMContentLoaded', function() {
     const sliderContainer = document.querySelector('.slider-container');
+    // Se não houver slider nesta página, não faz nada.
     if (!sliderContainer) return;
 
+    const wrapper = sliderContainer.querySelector('.servicos-wrapper');
     const track = sliderContainer.querySelector('.servicos-track');
     const items = Array.from(track.children);
-    const dotsNav = document.getElementById('sliderDots');
-    
-    // Adicionamos os botões de seta
     const nextButton = document.getElementById('nextBtn');
     const prevButton = document.getElementById('prevBtn');
+    const dotsNav = document.getElementById('sliderDots');
+
+    if (items.length === 0) return; // Sai se não houver itens
 
     const autoPlayDelay = 5000;
     let autoPlayInterval;
+    let currentIndex = 0;
 
-    items.forEach((item, index) => {
+    // --- CRIA OS PONTINHOS DE NAVEGAÇÃO ---
+    dotsNav.innerHTML = ''; // Limpa pontinhos antigos para evitar duplicação
+    items.forEach((_, index) => {
         const dot = document.createElement('button');
         dot.classList.add('dot');
-        if (index === 0) dot.classList.add('active');
-        dot.addEventListener('click', () => moveToSlide(index));
+        dot.setAttribute('aria-label', `Ir para o slide ${index + 1}`);
+        dot.addEventListener('click', () => {
+            currentIndex = index;
+            updateSliderPosition();
+            resetAutoPlay();
+        });
         dotsNav.appendChild(dot);
     });
-
     const dots = Array.from(dotsNav.children);
 
-    const moveToSlide = (targetIndex) => {
+    // --- FUNÇÃO PRINCIPAL QUE ATUALIZA O SLIDER ---
+    const updateSliderPosition = () => {
         const itemWidth = items[0].getBoundingClientRect().width;
         const gap = parseInt(window.getComputedStyle(track).gap) || 0;
-        track.parentElement.scrollLeft = targetIndex * (itemWidth + gap);
-    };
-    
-    const updateDots = () => {
-        const itemWidth = items[0].getBoundingClientRect().width;
-        const gap = parseInt(window.getComputedStyle(track).gap) || 0;
-        const scrollLeft = track.parentElement.scrollLeft;
-        const currentIndex = Math.round(scrollLeft / (itemWidth + gap));
         
+        // Calcula a posição e rola suavemente até ela
+        const scrollPosition = currentIndex * (itemWidth + gap);
+        wrapper.scrollTo({
+            left: scrollPosition,
+            behavior: 'smooth'
+        });
+
+        // Atualiza a classe 'active' no pontinho correto
         dots.forEach((dot, index) => {
             dot.classList.toggle('active', index === currentIndex);
         });
     };
-    track.parentElement.addEventListener('scroll', updateDots);
 
-    // --- LÓGICA DO AUTO-PLAY E INTERAÇÕES ---
+    // --- LÓGICA DOS BOTÕES DE SETA ---
+    nextButton.addEventListener('click', () => {
+        currentIndex++;
+        // Se chegar ao final, volta para o primeiro item
+        if (currentIndex >= items.length) {
+            currentIndex = 0;
+        }
+        updateSliderPosition();
+        resetAutoPlay();
+    });
+
+    prevButton.addEventListener('click', () => {
+        currentIndex--;
+        // Se estiver no primeiro e clicar para voltar, vai para o último
+        if (currentIndex < 0) {
+            currentIndex = items.length - 1;
+        }
+        updateSliderPosition();
+        resetAutoPlay();
+    });
+
+    // --- LÓGICA DO AUTO-PLAY ---
     const startAutoPlay = () => {
+        stopAutoPlay(); // Garante que não haja múltiplos intervalos rodando
         autoPlayInterval = setInterval(() => {
-            const itemWidth = items[0].getBoundingClientRect().width;
-            const gap = parseInt(window.getComputedStyle(track).gap) || 0;
-            const scrollLeft = track.parentElement.scrollLeft;
-            let currentIndex = Math.round(scrollLeft / (itemWidth + gap));
-            const nextIndex = (currentIndex + 1) % items.length;
-            moveToSlide(nextIndex);
+            nextButton.click(); // Simula um clique no botão "próximo"
         }, autoPlayDelay);
     };
 
-    const stopAutoPlay = () => clearInterval(autoPlayInterval);
+    const stopAutoPlay = () => {
+        clearInterval(autoPlayInterval);
+    };
     
     const resetAutoPlay = () => {
         stopAutoPlay();
         startAutoPlay();
     };
 
-    // Adicionamos a lógica para os cliques nas setas
-    nextButton.addEventListener('click', () => {
-        track.parentElement.scrollBy({ left: track.clientWidth, behavior: 'smooth' });
-        resetAutoPlay();
-    });
-
-    prevButton.addEventListener('click', () => {
-        track.parentElement.scrollBy({ left: -track.clientWidth, behavior: 'smooth' });
-        resetAutoPlay();
-    });
-
-    dots.forEach(dot => {
-        dot.addEventListener('click', () => {
-            resetAutoPlay();
-        });
-    });
-
+    // Pausa quando o mouse está sobre o slider
     sliderContainer.addEventListener('mouseenter', stopAutoPlay);
     sliderContainer.addEventListener('mouseleave', startAutoPlay);
 
+    // Inicia o slider
+    updateSliderPosition();
     startAutoPlay();
 });
 
