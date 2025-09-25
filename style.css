@@ -1,9 +1,8 @@
-
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
 
-/* ------------------- */
-/* VARIÁVEIS DE CORES E FONTES */
-/* ------------------- */
+/* ==========================================================================
+   1. CONFIGURAÇÕES GERAIS
+   ========================================================================== */
 :root {
     --cor-azul-escuro: #021E37;
     --cor-cinza-azulado: #98A4AE;
@@ -11,12 +10,9 @@
     --cor-verde: #678D73;
     --cor-branca: #FFFFFF;
     --fonte-principal: 'Poppins', Arial, sans-serif;
-    --cor-verde-rgb: 103, 141, 115; /* Versão RGB da nossa cor verde */
+    --cor-verde-rgb: 103, 141, 115;
 }
 
-/* ------------------- */
-/* ESTILOS GERAIS */
-/* ------------------- */
 * {
     margin: 0;
     padding: 0;
@@ -57,9 +53,11 @@ p {
     line-height: 1.6;
 }
 
-/* ------------------- */
-/* CABEÇALHO E NAVEGAÇÃO */
-/* ------------------- */
+/* ==========================================================================
+   2. COMPONENTES GERAIS (Usados em várias páginas)
+   ========================================================================== */
+
+/* --- CABEÇALHO E NAVEGAÇÃO --- */
 .main-header {
     background-color: var(--cor-verde);
     padding: 10px 5%;
@@ -94,43 +92,202 @@ p {
 }
 
 .main-nav .nav-cta {
-    background-color: var(--cor-branca); /* Fundo branco */
-    color: var(--cor-verde); /* Texto verde */
-    padding: 10px 25px; /* Espaçamento interno */
-    border-radius: 8px; /* Bordas arredondadas */
+    background-color: var(--cor-branca);
+    color: var(--cor-verde);
+    padding: 10px 25px;
+    border-radius: 8px;
     border: none;
-    font-family: var(--fonte-principal); /* Garante que usa a fonte Poppins */
-    font-weight: 700; /* Texto em negrito */
+    font-family: var(--fonte-principal);
+    font-weight: 700;
     font-size: 1rem;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 .main-nav .nav-cta:hover {
-    background-color: #f0f0f0; /* Um branco um pouco mais escuro ao passar o rato */
-    transform: scale(1.05); /* Efeito de crescimento suave */
+    background-color: #f0f0f0;
+    transform: scale(1.05);
 }
 
-/* Esconde o botão hambúrguer em ecrãs grandes */
 .hamburger {
     display: none;
 }
 
+/* --- RODAPÉ --- */
+footer {
+    background-color: var(--cor-azul-escuro);
+    color: var(--cor-cinza-azulado);
+    padding: 60px 5%;
+}
 
-/* ------------------- */
-/* SEÇÃO HERO COM VÍDEO DE FUNDO */
-/* ------------------- */
+.footer-logo {
+    max-width: 120px;
+    margin-bottom: 20px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--cor-cinza-azulado);
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 30px;
+}
+
+.footer-col {
+    flex: 1;
+}
+
+.footer-col h3 {
+    color: var(--cor-branca);
+    margin-bottom: 20px;
+}
+
+.footer-col a {
+    color: var(--cor-cinza-azulado);
+    text-decoration: none;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+}
+
+.desenvolvido-por {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.desenvolvido-por p {
+    margin: 0;
+    font-size: 0.9rem;
+}
+
+.logo-desenvolvedor {
+    max-height: 100px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 20px;
+}
+
+.social-icons a {
+    color: var(--cor-cinza-azulado);
+    font-size: 24px;
+    transition: color 0.3s, transform 0.3s;
+}
+
+.social-icons a:hover {
+    color: var(--cor-branca);
+    transform: scale(1.2);
+}
+
+/* --- WIDGET DE WHATSAPP --- */
+.whatsapp-widget {
+    position: fixed;
+    bottom: 25px;
+    right: 25px;
+    z-index: 1000;
+}
+
+.whatsapp-float-btn {
+    background-color: #25D366;
+    color: white;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: none;
+    font-size: 30px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.whatsapp-chat-box {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    width: 320px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    overflow: hidden;
+    transform: scale(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease;
+}
+
+.whatsapp-chat-box.visible {
+    transform: scale(1);
+}
+
+.chat-header {
+    background-color: #075E54;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.chat-close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.chat-body {
+    padding: 15px;
+}
+
+.chat-body textarea {
+    width: 100%;
+    height: 80px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin: 10px 0;
+    resize: none;
+}
+
+.chat-send-btn {
+    width: 100%;
+    padding: 12px;
+    background-color: #25D366;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+
+/* ==========================================================================
+   3. ESTILOS POR PÁGINA
+   ========================================================================== */
+
+/* --- PÁGINA INICIAL (index.html) --- */
+
+/* Seção Hero com Vídeo */
 .hero-section {
     height: 90vh;
-    position: relative; /* Essencial para sobrepor elementos */
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     padding: 0 5%;
-    overflow: hidden; /* Garante que o vídeo não ultrapasse a seção */
+    overflow: hidden;
 }
 
-/* Camada escura sobre o vídeo para dar contraste */
 .hero-section::before {
     content: '';
     position: absolute;
@@ -138,8 +295,8 @@ p {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(2, 30, 55, 0.70); /* Cor azul escuro com 70% de opacidade */
-    z-index: 2; /* Fica entre o vídeo e o texto */
+    background-color: rgba(2, 30, 55, 0.70);
+    z-index: 2;
 }
 
 .hero-video {
@@ -151,11 +308,11 @@ p {
     min-height: 100%;
     width: auto;
     height: auto;
-    z-index: 1; /* Fica no fundo de tudo */
+    z-index: 1;
 }
 
 .hero-text-content {
-    position: relative; /* Para ficar na frente do vídeo e da camada escura */
+    position: relative;
     z-index: 3;
     text-align: center;
     color: var(--cor-branca);
@@ -193,66 +350,17 @@ p {
     background-color: var(--cor-dourado);
 }
 
-/* Animação de pulso para o botão */
 @keyframes pulse {
-    0% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(var(--cor-verde-rgb), 0.7);
-    }
-    70% {
-        transform: scale(1.05);
-        box-shadow: 0 0 10px 20px rgba(var(--cor-verde-rgb), 0);
-    }
-    100% {
-        transform: scale(1);
-        box-shadow: 0 0 0 0 rgba(var(--cor-verde-rgb), 0);
-    }
+    0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(var(--cor-verde-rgb), 0.7); }
+    70% { transform: scale(1.05); box-shadow: 0 0 10px 20px rgba(var(--cor-verde-rgb), 0); }
+    100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(var(--cor-verde-rgb), 0); }
 }
 
 .animated-button {
     animation: pulse 2s infinite;
 }
 
-/* ------------------- */
-/* SEÇÃO QUEM SOMOS */
-/* ------------------- */
-#quem-somos {
-    background-color: var(--cor-branca);
-    padding: 100px 5%;
-}
-
-.quem-somos-container {
-    display: flex;
-    align-items: center;
-    gap: 60px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.quem-somos-image, .quem-somos-text {
-    flex: 1;
-}
-
-.quem-somos-image img {
-    width: 100%;
-    border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%;
-    border: 8px solid var(--cor-verde);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-}
-
-.quem-somos-text {
-    text-align: left;
-}
-
-.quem-somos-text h2 {
-    font-size: 2.8rem;
-    color: var(--cor-verde);
-    margin-bottom: 20px;
-}
-
-/* ------------------- */
-/* SEÇÃO SOBRE (MISSÃO, VISÃO, VALORES) */
-/* ------------------- */
+/* Seção Sobre (Missão, Visão, Valores) */
 #sobre {
     background-color: var(--cor-verde);
 }
@@ -299,13 +407,10 @@ p {
     font-size: 1.5rem;
 }
 
-/* ------------------- */
-/* SEÇÃO SERVIÇOS - SLIDER COM NOVO DESIGN */
-/* ------------------- */
+/* --- Seção Serviços (Slider) - VERSÃO FINAL OTIMIZADA --- */
 #servicos.section-dark {
     background-color: var(--cor-azul-escuro);
     padding: 80px 0;
-    overflow: hidden;
 }
 
 #servicos.section-dark h2 {
@@ -315,59 +420,28 @@ p {
     text-align: center;
 }
 
-
 .slider-container {
     position: relative;
-}
-.slider-container::before,
-.slider-container::after {
-    content: '';
-    position: absolute;
-    top: 0;
-    width: 100px;
-    height: 100%;
-    z-index: 2;
-}
-.slider-container::before {
-    left: 0;
-    background: linear-gradient(to left, rgba(2, 30, 55, 0), var(--cor-azul-escuro));
-}
-.slider-container::after {
-    right: 0;
-    background: linear-gradient(to right, rgba(2, 30, 55, 0), var(--cor-azul-escuro));
+    max-width: 1400px; /* AUMENTADO: O slider vai ocupar mais espaço na tela */
+    margin: 0 auto;
+    padding-bottom: 60px; /* Adiciona espaço em baixo para os pontinhos */
 }
 
 .servicos-wrapper {
-    width: 100%;
-    overflow-x: scroll;
-    scroll-snap-type: x mandatory; /* ADICIONE ISTO */
-    scroll-behavior: smooth; /* ADICIONE ISTO */
-    -ms-overflow-style: none;  /* Esconde a barra de scroll no IE e Edge */
-    scrollbar-width: none;  /* Esconde a barra de scroll no Firefox */
-}
-.servicos-wrapper::-webkit-scrollbar {
-    display: none; /* Esconde a barra de scroll no Chrome, Safari e Opera */
+    overflow: hidden; /* MUDADO: Esconde os slides que estão fora da área visível */
 }
 
 .servicos-track {
     display: flex;
     gap: 40px;
-    /*width: calc(380px * 32); /* (largura do card + gap) * número total de cards (originais + duplicados) */
-    /*animation: scroll 90s linear infinite;*/
-}
-
-.servicos-wrapper:hover .servicos-track {
-    animation-play-state: paused;
+    padding: 0 10px;
+    /* ADICIONADO: A transição suave agora é feita pelo CSS, mais performático */
+    transition: transform 0.5s ease-in-out; 
 }
 
 .servico-card {
     flex-shrink: 0;
-    width: 340px;
-    background-color: var(--cor-azul-escuro);
-    border-radius: 15px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+    width: 360px; /* AUMENTADO: Cartões um pouco maiores */
 }
 
 .servico-card-img {
@@ -399,7 +473,6 @@ p {
     flex-grow: 1;
 }
 
-/* ESTILO ATUALIZADO PARA O BOTÃO "SAIBA MAIS" */
 .btn-card-saiba-mais {
     display: inline-block;
     margin-top: 20px;
@@ -411,7 +484,7 @@ p {
     border: 1px solid var(--cor-dourado);
     border-radius: 50px;
     transition: all 0.3s ease;
-    align-self: center; /* Centraliza o botão */
+    align-self: center;
 }
 
 .btn-card-saiba-mais:hover {
@@ -419,10 +492,9 @@ p {
     color: var(--cor-azul-escuro);
 }
 
-/* Estilos para os Botões (Setas) */
 .slider-btn {
     position: absolute;
-    top: 50%;
+    top: 40%;
     transform: translateY(-50%);
     background-color: rgba(255, 255, 255, 0.5);
     border: none;
@@ -435,17 +507,23 @@ p {
     z-index: 10;
     transition: background-color 0.3s;
 }
+
 .slider-btn:hover {
     background-color: var(--cor-branca);
 }
-.prev-btn { left: 0; }
-.next-btn { right: 0; }
 
-/* Estilos para os Pontinhos */
+.prev-btn { left: 15px; }
+.next-btn { right: 15px; }
+
+/* CORRIGIDO: Posiciona os pontinhos de forma absoluta no centro */
 .slider-dots {
+    position: absolute;
+    bottom: 20px; /* Posição a partir do fundo do container */
+    left: 0;
+    right: 0;
     text-align: center;
-    padding-top: 30px;
 }
+
 .dot {
     height: 12px;
     width: 12px;
@@ -457,12 +535,12 @@ p {
     transition: background-color 0.3s;
     border: none;
 }
+
 .dot.active {
     background-color: var(--cor-branca);
 }
-/* ------------------- */
-/* CTA FINAL E RODAPÉ */
-/* ------------------- */
+
+/* Seção CTA Final */
 .cta-final {
     background-color: var(--cor-dourado);
 }
@@ -479,74 +557,237 @@ p {
     background-color: var(--cor-verde);
 }
 
-footer {
-    background-color: var(--cor-azul-escuro);
-    color: var(--cor-cinza-azulado);
-    padding: 60px 5%;
-}
-.footer-logo {
-    max-width: 120px; /* Define a largura máxima do logo */
-    margin-bottom: 20px; /* Adiciona um espaço abaixo do logo */
-    }
-.footer-container {
-    display: flex;
-    justify-content: space-between;
-    padding-bottom: 40px;
-    border-bottom: 1px solid var(--cor-cinza-azulado);
-    max-width: 1200px;
-    margin: 0 auto;
-    gap: 30px;
+/* --- PÁGINA QUEM SOMOS (quemsomos.html) --- */
+#quem-somos {
+    background-color: var(--cor-branca);
+    padding: 100px 5%;
 }
 
-.footer-col {
+.quem-somos-container {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.quem-somos-image, .quem-somos-text {
     flex: 1;
 }
 
-.footer-col h3 {
-    color: var(--cor-branca);
+.quem-somos-image img {
+    width: 100%;
+    border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%;
+    border: 8px solid var(--cor-verde);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+}
+
+.quem-somos-text {
+    text-align: left;
+}
+
+.quem-somos-text h2 {
+    font-size: 2.8rem;
+    color: var(--cor-verde);
     margin-bottom: 20px;
 }
 
-.footer-col a {
-    color: var(--cor-cinza-azulado);
-    text-decoration: none;
-}
-
-.footer-bottom {
-    text-align: center;
+/* --- PÁGINA DE SERVIÇOS (servicos.html) --- */
+.servicos-nav {
     margin-top: 40px;
-}
-/* --- Estilos para a assinatura "Desenvolvido por" no rodapé --- */
-
-.desenvolvido-por {
-    display: flex; /* Alinha os itens (texto e imagem) lado a lado */
-    justify-content: center; /* Centraliza o grupo no meio do rodapé */
-    align-items: center; /* Alinha verticalmente o texto e a imagem */
-    gap: 10px; /* Adiciona um pequeno espaço entre o texto e a imagem */
-    margin-top: 15px; /* Adiciona um espaço acima */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+    padding: 20px 0;
 }
 
-.desenvolvido-por p {
-    margin: 0; /* Remove qualquer margem padrão do parágrafo */
-    font-size: 0.9rem; /* Tamanho da fonte um pouco menor */
+.servicos-nav div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
 }
 
-.logo-desenvolvedor {
-    max-height: 100px; /* Define a altura máxima do logo, diminuindo o seu tamanho */
+.servicos-nav a {
+    text-decoration: none;
+    color: var(--cor-azul-escuro);
+    font-weight: 500;
+    font-size: 0.9rem;
+    padding: 8px 18px;
+    border-radius: 50px;
+    transition: all 0.3s ease;
+    border: 1px solid #e0e0e0;
+}
+
+.servicos-nav a:hover {
+    background-color: var(--cor-azul-escuro);
+    color: var(--cor-branca);
+    border-color: var(--cor-azul-escuro);
+}
+
+.servico-detalhe {
+    padding: 100px 5%;
+}
+
+.servico-detalhe-content {
+    display: flex;
+    align-items: center;
+    gap: 60px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.servico-detalhe-content.reverse {
+    flex-direction: row-reverse;
+}
+
+.servico-detalhe-texto {
+    flex: 1;
+    text-align: left;
+}
+
+.servico-detalhe-imagem {
+    flex: 1;
+}
+
+.servico-detalhe-imagem img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+/* --- PÁGINA DE CONTATO (contato.html) --- */
+.contact-page-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    gap: 60px;
+    align-items: flex-start;
+}
+
+.contact-details, .contact-form-wrapper {
+    flex: 1;
+}
+
+.contact-details h3 {
+    text-align: left;
+}
+
+.contact-details p {
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.contact-item i {
+    font-size: 20px;
+    color: var(--cor-verde);
+    padding: 10px;
+    background-color: #f0f5fb;
+    border-radius: 50%;
+}
+
+.contact-item strong {
+    display: block;
+}
+
+.contact-form-wrapper h3 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.contact-form-page .form-group-split {
+    display: flex;
+    gap: 15px;
+}
+
+.contact-form-page .form-group {
+    margin-bottom: 15px;
+    width: 100%;
+}
+
+.contact-form-page input,
+.contact-form-page textarea {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-family: var(--fonte-principal);
+}
+
+.contact-form-page .form-submit-btn {
+    width: auto;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    border: none;
+    cursor: pointer;
+    background-color: var(--cor-dourado);
+    color: white;
+}
+
+.map-section {
+    padding: 0;
+}
+
+.map-section iframe {
+    display: block;
+    width: 100%;
+    filter: grayscale(100%);
+    transition: filter 0.5s ease;
+}
+
+.map-section iframe:hover {
+    filter: grayscale(0%);
+}
+
+/* --- PÁGINA DE OBRIGADO (obrigado.html) --- */
+.thank-you-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 60vh;
+    text-align: center;
+}
+
+.thank-you-content .fa-check-circle {
+    font-size: 60px;
+    color: var(--cor-verde);
+    margin-bottom: 20px;
+}
+
+.thank-you-content h1 {
+    font-size: 2.5rem;
+    color: var(--cor-azul-escuro);
+}
+
+.thank-you-content p {
+    font-size: 1.2rem;
+    color: #555;
+    max-width: 500px;
+    margin: 10px auto 0;
 }
 
 
-/******************************************/
-/* --- RESPONSIVIDADE PARA ECRÃS MENORES --- */
-/******************************************/
-@media (max-width: 992px) { /* Breakpoint para tablets e telemóveis */
-
-    /* --- GERAL --- */
+/* ==========================================================================
+   4. RESPONSIVIDADE (MEDIA QUERIES)
+   ========================================================================== */
+@media (max-width: 992px) {
     h1 { font-size: 2.2rem; }
     h2 { font-size: 2rem; }
     section { padding: 60px 5%; }
 
-    /* --- MENU HAMBÚRGUER --- */
+    /* --- Menu Hambúrguer --- */
     .hamburger {
         display: flex;
         flex-direction: column;
@@ -595,29 +836,18 @@ footer {
         width: auto;
     }
 
-    /* --- SEÇÃO HERO --- */
-    .hero-content-wrapper {
-        flex-direction: column;
-    }
-
+    /* --- Seções Empilhadas --- */
     .hero-text-content {
         padding: 40px 5%;
         text-align: center;
     }
     
-    .hero-image-content {
-        display: none;
-    }
-    
-    .logo-hero, .cta-button {
-        align-self: center;
-    }
-
-    /* --- SEÇÃO QUEM SOMOS, SOBRE, SERVIÇOS E RODAPÉ --- */
     .quem-somos-container,
     .sobre-container,
-    .servicos-container,
-    .footer-container {
+    .footer-container,
+    .servico-detalhe-content,
+    .servico-detalhe-content.reverse,
+    .contact-page-wrapper {
         flex-direction: column;
         gap: 30px;
     }
@@ -625,543 +855,23 @@ footer {
     .footer-container {
         text-align: center;
     }
-    
-    
-    /* --- CORREÇÃO DO SLIDER DE SERVIÇOS --- */
-   /* .slider-container {
-        padding: 0; /* Remove padding lateral em mobile 
-    }*/
 
-    .servico-item-wrapper {
-        flex-direction: column; /* ESSENCIAL: Empilha imagem e texto */
-        gap: 20px;
-    }
-    
-    .servico-image {
-        width: 100%;
-    }
-
-    .servico-image img {
-        height: 220px; /* Altura ajustada para mobile */
-    }
-
-    .servico-item {
-        height: auto; /* Altura automática para o texto */
-        width: 100%;
-        padding: 25px;
-    }
-
+    /* --- Slider --- */
     .slider-btn {
-        width: 40px; /* Setas um pouco menores */
+        width: 40px;
         height: 40px;
         font-size: 20px;
     }
     
-    
-    /* Afasta as setas das bordas da tela */
     .prev-btn { left: 10px; }
     .next-btn { right: 10px; }
-    
 }
 
-
 @media (max-width: 576px) {
-    /* Ajustes finos para telemóveis muito pequenos */
     h1 { font-size: 1.8rem; }
     h2 { font-size: 1.6rem; }
 
-    .logo-hero {
-        max-height: 120px;
+        .logo-hero {
+            max-height: 120px;
+        }
     }
-}
-/* ------------------- */
-/* ESTILOS ATUALIZADOS DO MODAL/POPUP DE CONTATO */
-/* ------------------- */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 2000;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-}
-
-.modal-overlay.visible {
-    display: flex;
-    opacity: 1;
-}
-
-.modal-content {
-    background-color: #f0f5fb;
-    padding: 40px;
-    border-radius: 15px;
-    max-width: 900px;
-    width: 90%;
-    position: relative;
-    box-shadow: 0 5px 25px rgba(0,0,0,0.2);
-    transform: scale(0.9);
-    transition: transform 0.4s ease;
-}
-
-.modal-overlay.visible .modal-content {
-    transform: scale(1);
-}
-
-.modal-close-btn {
-    position: absolute;
-    top: 15px;
-    right: 20px;
-    background: none;
-    border: none;
-    font-size: 28px;
-    color: var(--cor-cinza-azulado);
-    cursor: pointer;
-}
-
-.modal-content .form-container {
-    display: flex;
-    gap: 40px;
-    align-items: center;
-}
-.modal-content .form-info { 
-    flex: 1; 
-    text-align: left; 
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-/* Letra do título diminuída */
-.modal-content .form-info h2 { 
-    color: var(--cor-azul-escuro); 
-    font-size: 1.8rem; /* << LETRA DIMINUÍDA */
-    font-weight: 700;
-}
-
-.modal-content .form-info p { 
-    color: #555; 
-    margin-top: 10px;
-}
-
-/* Container da imagem para posicionar os efeitos */
-.form-info-image-wrapper {
-    position: relative; /* Essencial para os efeitos ::before e ::after */
-    margin-top: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-
-.modal-content .form-info img { 
-    width: 85%; /* Um pouco menor para os efeitos aparecerem */
-    border-radius: 73% 27% 56% 44% / 54% 30% 70% 46%; 
-    position: relative;
-    z-index: 2; /* Garante que a imagem fique na frente dos efeitos */
-}
-
-/* Efeito 1: Círculo azul claro no fundo */
-.form-info-image-wrapper::before {
-    content: '';
-    position: absolute;
-    top: -20px;
-    right: 0;
-    width: 100px;
-    height: 100px;
-    background-color: #cce3ff; /* Azul claro */
-    border-radius: 50%;
-    z-index: 1; /* Atrás da imagem */
-}
-
-/* Efeito 2: Pontinhos no fundo */
-.form-info-image-wrapper::after {
-    content: '';
-    position: absolute;
-    bottom: -20px;
-    left: 0;
-    width: 100px;
-    height: 100px;
-    /* Truque para criar pontinhos com CSS */
-    background-image: radial-gradient(var(--cor-cinza-azulado) 2px, transparent 2px);
-    background-size: 15px 15px;
-    z-index: 1; /* Atrás da imagem */
-}
-
-/* Estilos dos campos do formulário */
-.modal-content .form-group { margin-bottom: 15px; }
-.modal-content .form-group label { display: block; margin-bottom: 5px; font-weight: 500; font-size: 0.9rem; }
-.modal-content .form-group input {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid var(--cor-cinza-azulado);
-    border-radius: 8px;
-    font-size: 1rem;
-}
-.modal-content .form-group-split { display: flex; gap: 15px; }
-.modal-content .form-submit-btn {
-    width: 100%;
-    padding: 15px;
-    font-size: 1.1rem;
-    background-color: var(--cor-dourado); /* Cor do botão alterada */
-    color: var(--cor-azul-escuro); /* Cor do texto do botão */
-}
-.modal-content .form-submit-btn:hover {
-    background-color: var(--cor-dourado-escuro); /* Um dourado um pouco mais escuro no hover */
-}
-
-/* Estilos para os botões de seleção (WhatsApp/Ligação) */
-.radio-group {
-    display: flex;
-    gap: 10px;
-}
-
-.radio-button {
-    flex: 1;
-    padding: 12px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    background-color: #FFF;
-    color: var(--cor-cinza-azulado);
-    cursor: pointer;
-    font-weight: 500;
-    transition: all 0.3s ease;
-}
-
-.radio-button.active {
-    background-color: #dbe9f9; /* Azul claro para o botão ativo */
-    color: var(--cor-verde);
-    border-color: var(--cor-verde);
-}
-
-/* Responsividade do Modal */
-@media (max-width: 768px) {
-    .modal-content .form-container {
-        flex-direction: column;
-        gap: 30px;
-    }
-    .modal-content .form-info img {
-        width: 100%;
-    }
-}
-/* ------------------- */
-/* ESTILOS ADICIONAIS (PASSO FINAL) */
-/* ------------------- */
-
-/* --- Ícones de Redes Sociais no Rodapé --- */
-.social-icons {
-    display: flex;
-    gap: 20px;
-}
-.social-icons a {
-    color: var(--cor-cinza-azulado);
-    font-size: 24px; /* Tamanho do ícone */
-    transition: color 0.3s, transform 0.3s;
-}
-.social-icons a:hover {
-    color: var(--cor-branca);
-    transform: scale(1.2);
-}
-
-/* --- Botão "Saiba Mais" nos Cards do Slider --- */
-.btn-card-saiba-mais {
-    display: inline-block;
-    margin-top: auto; /* Empurra o botão para o final do card */
-    padding: 8px 20px;
-    background-color: transparent;
-    color: var(--cor-branca);
-    text-decoration: none;
-    font-weight: bold;
-    border: 2px solid var(--cor-dourado);
-    border-radius: 50px;
-    transition: all 0.3s ease;
-}
-.btn-card-saiba-mais:hover {
-    background-color: var(--cor-dourado);
-}
-
-
-/* --- ESTILOS DA PÁGINA DE SERVIÇOS (LAYOUT LADO A LADO) --- */
-.servicos-detalhe-header {
-    background-color: var(--cor-branca);
-    padding-bottom: 40px;
-}
-.servicos-nav {
-    margin-top: 40px;
-    display: flex;
-    flex-direction: column; /* FAZ AS DUAS DIVS FICAREM UMA DEBAIXO DA OUTRA */
-    align-items: center;   /* Centraliza as linhas de links */
-    gap: 15px;             /* Espaço entre as duas linhas de links */
-    border-top: 1px solid #eee;
-    border-bottom: 1px solid #eee;
-    padding: 20px 0;
-}
-
-.servicos-nav div {
-    display: flex;
-    flex-wrap: wrap; /* Permite que os links quebrem a linha em telas menores */
-    justify-content: center;
-    gap: 15px; /* Espaço entre os botões de link */
-}
-
-.servicos-nav a {
-    text-decoration: none;
-    color: var(--cor-azul-escuro);
-    font-weight: 500; /* Um pouco mais fino que negrito */
-    font-size: 0.9rem;
-    padding: 8px 18px;
-    border-radius: 50px;
-    transition: all 0.3s ease;
-    border: 1px solid #e0e0e0;
-}
-
-.servicos-nav a:hover {
-    background-color: var(--cor-azul-escuro);
-    color: var(--cor-branca);
-    border-color: var(--cor-azul-escuro);
-}
-
-.servico-detalhe {
-    padding: 100px 5%;
-}
-.servico-detalhe-content {
-    display: flex;
-    align-items: center;
-    gap: 60px;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-.servico-detalhe-content.reverse {
-    flex-direction: row-reverse; /* Inverte a ordem para variar o layout */
-}
-.servico-detalhe-texto {
-    flex: 1;
-    text-align: left;
-}
-.servico-detalhe-imagem {
-    flex: 1;
-}
-.servico-detalhe-imagem img {
-    width: 100%;
-    border-radius: 20px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-/* --- Responsividade para a página de serviços --- */
-@media (max-width: 992px) {
-    .servico-detalhe-content,
-    .servico-detalhe-content.reverse {
-        flex-direction: column;
-    }
-}
-/* --- ESTILOS DO WIDGET FLUTUANTE DE WHATSAPP --- */
-.whatsapp-widget {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    z-index: 1000;
-}
-.whatsapp-float-btn {
-    background-color: #25D366;
-    color: white;
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    border: none;
-    font-size: 30px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-.whatsapp-chat-box {
-    position: absolute;
-    bottom: 80px;
-    right: 0;
-    width: 320px;
-    background-color: white;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-    overflow: hidden;
-    /* Começa escondido e com animação */
-    transform: scale(0);
-    transform-origin: bottom right;
-    transition: transform 0.3s ease;
-}
-.whatsapp-chat-box.visible {
-    transform: scale(1); /* Fica visível */
-}
-.chat-header {
-    background-color: #075E54;
-    color: white;
-    padding: 15px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-.chat-close-btn {
-    background: none;
-    border: none;
-    color: white;
-    font-size: 24px;
-    cursor: pointer;
-}
-.chat-body {
-    padding: 15px;
-}
-.chat-body textarea {
-    width: 100%;
-    height: 80px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    margin: 10px 0;
-    resize: none;
-}
-.chat-send-btn {
-    width: 100%;
-    padding: 12px;
-    background-color: #25D366;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-}
-/* ------------------- */
-/* ESTILOS DA PÁGINA DE CONTATO (LAYOUT LADO A LADO) */
-/* ------------------- */
-.contact-page-section {
-    padding: 80px 5%;
-}
-.contact-page-wrapper {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: flex;
-    gap: 60px;
-    align-items: flex-start;
-}
-.contact-details, .contact-form-wrapper {
-    flex: 1;
-}
-.contact-subtitle {
-    font-family: 'Times New Roman', serif; /* Exemplo de fonte cursiva */
-    color: var(--cor-dourado);
-    font-weight: 500;
-    margin-bottom: 0;
-    font-size: 1.5rem;
-}
-.contact-details h2 {
-    font-size: 2.8rem;
-    margin-bottom: 20px;
-    text-align: left;
-}
-.contact-details p {
-    text-align: left;
-    margin-bottom: 30px;
-}
-.contact-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 15px;
-    margin-bottom: 20px;
-    text-align: left;
-}
-.contact-item i {
-    font-size: 20px;
-    color: var(--cor-verde);
-    padding: 10px;
-    background-color: #f0f5fb;
-    border-radius: 50%;
-}
-.contact-item strong {
-    display: block;
-}
-.contact-form-wrapper h3 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-}
-.contact-form-page .form-group-split {
-    display: flex;
-    gap: 15px;
-}
-.contact-form-page .form-group {
-    margin-bottom: 15px;
-    width: 100%;
-}
-.contact-form-page input,
-.contact-form-page textarea {
-    width: 100%;
-    padding: 15px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    font-size: 1rem;
-    font-family: var(--fonte-principal);
-}
-.contact-form-page .form-submit-btn {
-    width: auto;
-    padding: 15px 40px;
-    font-size: 1.1rem;
-    border: none;
-    cursor: pointer;
-    background-color: var(--cor-dourado);
-    color: white;
-}
-
-/* Estilos para a seção do mapa retangular */
-.map-section {
-    padding: 0; /* Remove padding para o mapa ocupar a largura toda */
-}
-
-.map-section iframe {
-    display: block;
-    width: 100%;
-    filter: grayscale(100%); /* << A LINHA MÁGICA! Deixa o mapa a preto e branco. */
-    transition: filter 0.5s ease; /* Efeito de transição suave */
-}
-
-/* BÓNUS: O mapa volta a ter cor quando o utilizador passa o rato por cima */
-.map-section iframe:hover {
-    filter: grayscale(0%);
-}
-/* Responsividade da página de contato */
-@media (max-width: 768px) {
-    .contact-info-block {
-        flex-direction: column;
-        align-items: center;
-    }
-}
-/* ------------------- */
-/* ESTILOS DA PÁGINA DE OBRIGADO */
-/* ------------------- */
-.thank-you-section {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 60vh; /* Garante que o conteúdo ocupe uma boa parte da tela */
-    text-align: center;
-}
-
-.thank-you-content .fa-check-circle {
-    font-size: 60px;
-    color: var(--cor-verde);
-    margin-bottom: 20px;
-}
-
-.thank-you-content h1 {
-    font-size: 2.5rem;
-    color: var(--cor-azul-escuro);
-}
-
-.thank-you-content p {
-    font-size: 1.2rem;
-    color: #555;
-    max-width: 500px;
-    margin: 10px auto 0;
-}

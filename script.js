@@ -9,11 +9,10 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- CÓDIGO DO SLIDER MANUAL ---
+    // --- CÓDIGO DO SLIDER MANUAL OTIMIZADO ---
     const sliderContainer = document.querySelector('.slider-container');
     if (sliderContainer) {
         const track = sliderContainer.querySelector('.servicos-track');
-        const wrapper = sliderContainer.querySelector('.servicos-wrapper');
         const items = Array.from(track.children);
         const nextButton = document.getElementById('nextBtn');
         const prevButton = document.getElementById('prevBtn');
@@ -39,10 +38,13 @@ document.addEventListener('DOMContentLoaded', function() {
             const updateSlider = () => {
                 const itemWidth = items[0].getBoundingClientRect().width;
                 const gap = parseInt(window.getComputedStyle(track).gap, 10) || 0;
-                const scrollAmount = currentIndex * (itemWidth + gap);
+                // CALCULA A DISTÂNCIA PARA MOVER
+                const moveAmount = currentIndex * (itemWidth + gap);
                 
-                wrapper.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+                // MUDANÇA PRINCIPAL: Usa transform em vez de scroll para mais performance
+                track.style.transform = `translateX(-${moveAmount}px)`;
 
+                // Atualiza o pontinho ativo
                 dots.forEach((dot, index) => {
                     dot.classList.toggle('active', index === currentIndex);
                 });
@@ -50,12 +52,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
             // Ações dos botões de seta
             nextButton.addEventListener('click', () => {
-                currentIndex = (currentIndex + 1) % items.length;
+                currentIndex = (currentIndex + 1) % items.length; // O '%' garante que volte ao início
                 updateSlider();
             });
 
             prevButton.addEventListener('click', () => {
-                currentIndex = (currentIndex - 1 + items.length) % items.length;
+                currentIndex = (currentIndex - 1 + items.length) % items.length; // Garante que volte ao final
                 updateSlider();
             });
 
