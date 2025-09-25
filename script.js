@@ -128,28 +128,39 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 });
 
-
-
-// --- CÓDIGO DO MODAL DE CONTATO ---
+    // --- CÓDIGO DO MODAL DE CONTATO ---
     const contactModal = document.getElementById('contactModal');
-    const closeModalBtn = document.getElementById('closeModalBtn');
-    const openModalNavBtn = document.getElementById('openModalNavBtn');
-    if (contactModal && closeModalBtn && openModalNavBtn) {
+    // Apenas executa se o modal existir na página atual (index.html)
+    if (contactModal) {
+        const closeModalBtn = document.getElementById('closeModalBtn');
+        const openModalNavBtn = document.getElementById('openModalNavBtn');
+
         const openModal = () => contactModal.classList.add('visible');
         const closeModal = () => contactModal.classList.remove('visible');
 
-        openModalNavBtn.addEventListener('click', openModal);
-        closeModalBtn.addEventListener('click', closeModal);
-        contactModal.addEventListener('click', (event) => {
-            if (event.target === contactModal) closeModal();
-        });
+        // Abre o modal pelo botão "Fale Conosco" no menu
+        if (openModalNavBtn) {
+            openModalNavBtn.addEventListener('click', openModal);
+        }
+        
+        // Fecha o modal pelo botão "X"
+        if (closeModalBtn) {
+            closeModalBtn.addEventListener('click', closeModal);
+        }
 
-        // Opcional: Abrir automaticamente após alguns segundos
-        // setTimeout(openModal, 5000); 
+        // Fecha ao clicar no fundo
+        contactModal.addEventListener('click', (event) => {
+            if (event.target === contactModal) {
+                closeModal();
+            }
+        });
+        
+        // FAZ O MODAL APARECER AUTOMATICAMENTE APÓS 3 SEGUNDOS
+        setTimeout(openModal, 3000); // 3000 milissegundos = 3 segundos
     }
 
     // --- CÓDIGO PARA OS BOTÕES DE SELEÇÃO NO FORMULÁRIO ---
-    const radioGroup = document.querySelector('.modal-content .radio-group');
+    const radioGroup = document.querySelector('.radio-group');
     if (radioGroup) {
         const radioButtons = radioGroup.querySelectorAll('.radio-button');
         const hiddenInput = document.getElementById('preferencia_contato');
@@ -163,3 +174,4 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+
