@@ -9,60 +9,103 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
-    // --- CÓDIGO DO SLIDER MANUAL OTIMIZADO ---
+    // --- CÓDIGO DO SLIDER COM LOOP INFINITO ---
     const sliderContainer = document.querySelector('.slider-container');
     if (sliderContainer) {
         const track = sliderContainer.querySelector('.servicos-track');
-        const items = Array.from(track.children);
+        let items = Array.from(track.children);
         const nextButton = document.getElementById('nextBtn');
         const prevButton = document.getElementById('prevBtn');
         const dotsNav = document.getElementById('sliderDots');
 
-        if (items.length > 0) {
-            let currentIndex = 0;
+        if (items.length > 3) { // O loop só faz sentido se houver mais itens do que o visível
+            const itemsToClone = 3; // Número de itens visíveis
+            
+            // 1. Clonar itens para criar o efeito infinito
+            // Clona os últimos itens e coloca-os no início
+            for (let i = 0; i < itemsToClone; i++) {
+                const clone = items[items.length - 1 - i].cloneNode(true);
+                track.insertBefore(clone, items[0]);
+            }
+            // Clona os primeiros itens e coloca-os no final
+            for (let i = 0; i < itemsToClone; i++) {
+                const clone = items[i].cloneNode(true);
+                track.appendChild(clone);
+            }
 
-            // Criar os pontinhos
+            let currentIndex = itemsToClone; // Começa nos primeiros itens reais
+            
+            const updateSliderPosition = (withTransition = true) => {
+                const itemWidth = items[0].getBoundingClientRect().width;
+                const gap = parseInt(window.getComputedStyle(track).gap, 10) || 0;
+                const moveAmount = currentIndex * (itemWidth + gap);
+
+                if (!withTransition) {
+                    track.style.transition = 'none'; // Desliga a animação para o "salto"
+                }
+                
+                track.style.transform = `translateX(-${moveAmount}px)`;
+
+                if (!withTransition) {
+                    // Força o navegador a aplicar o estilo e depois liga a transição de volta
+                    setTimeout(() => {
+                        track.style.transition = 'transform 0.5s ease-in-out';
+                    }, 50);
+                }
+            };
+            
+            // Posiciona o slider no início (sem animação)
+            updateSliderPosition(false);
+
+
+            // Lógica para verificar e "saltar" quando chega aos clones
+            track.addEventListener('transitionend', () => {
+                if (currentIndex >= items.length + itemsToClone) {
+                    currentIndex = itemsToClone;
+                    updateSliderPosition(false);
+                }
+                if (currentIndex <= itemsToClone - 1) {
+                    currentIndex = items.length + itemsToClone - 1;
+                    updateSliderPosition(false);
+                }
+            });
+
+            // Ações dos botões
+            nextButton.addEventListener('click', () => {
+                currentIndex++;
+                updateSliderPosition();
+            });
+
+            prevButton.addEventListener('click', () => {
+                currentIndex--;
+                updateSliderPosition();
+            });
+
+            // Os pontinhos continuam a funcionar, mas agora apenas para os itens originais
             dotsNav.innerHTML = '';
             items.forEach((_, index) => {
                 const dot = document.createElement('button');
                 dot.classList.add('dot');
-                dot.setAttribute('aria-label', `Ir para o slide ${index + 1}`);
                 dot.addEventListener('click', () => {
-                    currentIndex = index;
-                    updateSlider();
+                    currentIndex = index + itemsToClone;
+                    updateSliderPosition();
                 });
                 dotsNav.appendChild(dot);
             });
             const dots = Array.from(dotsNav.children);
 
-            const updateSlider = () => {
-                const itemWidth = items[0].getBoundingClientRect().width;
-                const gap = parseInt(window.getComputedStyle(track).gap, 10) || 0;
-                // CALCULA A DISTÂNCIA PARA MOVER
-                const moveAmount = currentIndex * (itemWidth + gap);
-                
-                // MUDANÇA PRINCIPAL: Usa transform em vez de scroll para mais performance
-                track.style.transform = `translateX(-${moveAmount}px)`;
-
-                // Atualiza o pontinho ativo
+            // Função para atualizar os pontinhos
+            const updateDots = () => {
+                const realIndex = (currentIndex - itemsToClone + items.length) % items.length;
                 dots.forEach((dot, index) => {
-                    dot.classList.toggle('active', index === currentIndex);
+                    dot.classList.toggle('active', index === realIndex);
                 });
             };
-
-            // Ações dos botões de seta
-            nextButton.addEventListener('click', () => {
-                currentIndex = (currentIndex + 1) % items.length; // O '%' garante que volte ao início
-                updateSlider();
-            });
-
-            prevButton.addEventListener('click', () => {
-                currentIndex = (currentIndex - 1 + items.length) % items.length; // Garante que volte ao final
-                updateSlider();
-            });
-
-            // Inicia o slider na posição correta
-            updateSlider();
+            
+            // Atualiza os pontinhos sempre que a transição acaba
+            track.addEventListener('transitionend', updateDots);
+            // E também no início
+            updateDots();
         }
     }
 
