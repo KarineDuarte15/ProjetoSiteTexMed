@@ -315,10 +315,6 @@ p {
     text-align: center;
 }
 
-@keyframes scroll {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(calc(-380px * 16)); } /* (largura do card + gap) * número de cards originais */
-}
 
 .slider-container {
     position: relative;
@@ -343,13 +339,21 @@ p {
 
 .servicos-wrapper {
     width: 100%;
+    overflow-x: scroll;
+    scroll-snap-type: x mandatory; /* ADICIONE ISTO */
+    scroll-behavior: smooth; /* ADICIONE ISTO */
+    -ms-overflow-style: none;  /* Esconde a barra de scroll no IE e Edge */
+    scrollbar-width: none;  /* Esconde a barra de scroll no Firefox */
+}
+.servicos-wrapper::-webkit-scrollbar {
+    display: none; /* Esconde a barra de scroll no Chrome, Safari e Opera */
 }
 
 .servicos-track {
     display: flex;
     gap: 40px;
-    width: calc(380px * 32); /* (largura do card + gap) * número total de cards (originais + duplicados) */
-    animation: scroll 90s linear infinite;
+    /*width: calc(380px * 32); /* (largura do card + gap) * número total de cards (originais + duplicados) */
+    /*animation: scroll 90s linear infinite;*/
 }
 
 .servicos-wrapper:hover .servicos-track {
@@ -624,9 +628,9 @@ footer {
     
     
     /* --- CORREÇÃO DO SLIDER DE SERVIÇOS --- */
-    .slider-container {
-        padding: 0; /* Remove padding lateral em mobile */
-    }
+   /* .slider-container {
+        padding: 0; /* Remove padding lateral em mobile 
+    }*/
 
     .servico-item-wrapper {
         flex-direction: column; /* ESSENCIAL: Empilha imagem e texto */

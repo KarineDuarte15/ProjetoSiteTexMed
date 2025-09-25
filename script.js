@@ -1,88 +1,87 @@
-// --- CÓDIGO DO SLIDER DE SERVIÇOS ---
-    document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
 
-    const sliderContainer = document.querySelector('.slider-container');
-    if (!sliderContainer) {
-        console.error('O slider-container não foi encontrado!');
-        return;
+    // --- CÓDIGO DO MENU HAMBÚRGUER (PARA MOBILE) ---
+    const hamburgerButton = document.getElementById('hamburger-button');
+    const navList = document.getElementById('nav-list');
+    if (hamburgerButton && navList) {
+        hamburgerButton.addEventListener('click', () => {
+            navList.classList.toggle('nav-active');
+        });
     }
 
-    const track = sliderContainer.querySelector('.servicos-track');
-    const wrapper = sliderContainer.querySelector('.servicos-wrapper');
-    const items = Array.from(track.children);
-    const nextButton = document.getElementById('nextBtn');
-    const prevButton = document.getElementById('prevBtn');
-    const dotsNav = document.getElementById('sliderDots');
+    // --- CÓDIGO DO SLIDER MANUAL ---
+    const sliderContainer = document.querySelector('.slider-container');
+    if (sliderContainer) {
+        const track = sliderContainer.querySelector('.servicos-track');
+        const wrapper = sliderContainer.querySelector('.servicos-wrapper');
+        const items = Array.from(track.children);
+        const nextButton = document.getElementById('nextBtn');
+        const prevButton = document.getElementById('prevBtn');
+        const dotsNav = document.getElementById('sliderDots');
 
-    if (items.length === 0) return;
+        if (items.length > 0) {
+            let currentIndex = 0;
 
-    // Ajustado para 3 segundos, como solicitado
-    const autoPlayDelay = 3000;
-    let currentIndex = 0;
-    let autoPlayInterval;
+            // Criar os pontinhos
+            dotsNav.innerHTML = '';
+            items.forEach((_, index) => {
+                const dot = document.createElement('button');
+                dot.classList.add('dot');
+                dot.setAttribute('aria-label', `Ir para o slide ${index + 1}`);
+                dot.addEventListener('click', () => {
+                    currentIndex = index;
+                    updateSlider();
+                });
+                dotsNav.appendChild(dot);
+            });
+            const dots = Array.from(dotsNav.children);
 
-    // --- Cria os pontinhos ---
-    dotsNav.innerHTML = '';
-    items.forEach((_, index) => {
-        const dot = document.createElement('button');
-        dot.classList.add('dot');
-        dot.setAttribute('aria-label', `Ir para o slide ${index + 1}`);
-        dot.addEventListener('click', () => {
-            currentIndex = index;
+            const updateSlider = () => {
+                const itemWidth = items[0].getBoundingClientRect().width;
+                const gap = parseInt(window.getComputedStyle(track).gap, 10) || 0;
+                const scrollAmount = currentIndex * (itemWidth + gap);
+                
+                wrapper.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+
+                dots.forEach((dot, index) => {
+                    dot.classList.toggle('active', index === currentIndex);
+                });
+            };
+
+            // Ações dos botões de seta
+            nextButton.addEventListener('click', () => {
+                currentIndex = (currentIndex + 1) % items.length;
+                updateSlider();
+            });
+
+            prevButton.addEventListener('click', () => {
+                currentIndex = (currentIndex - 1 + items.length) % items.length;
+                updateSlider();
+            });
+
+            // Inicia o slider na posição correta
             updateSlider();
-            resetAutoPlay();
+        }
+    }
+
+    // --- CÓDIGO DO WIDGET DE WHATSAPP ---
+    const floatBtn = document.querySelector('.whatsapp-float-btn');
+    if (floatBtn) {
+        const chatBox = document.querySelector('.whatsapp-chat-box');
+        const closeBtn = document.querySelector('.chat-close-btn');
+        const sendBtn = document.querySelector('.chat-send-btn');
+        const messageBox = document.getElementById('whatsapp-message');
+
+        floatBtn.addEventListener('click', () => chatBox.classList.toggle('visible'));
+        closeBtn.addEventListener('click', () => chatBox.classList.remove('visible'));
+        sendBtn.addEventListener('click', () => {
+            const numero = '5585987411585';
+            const mensagem = encodeURIComponent(messageBox.value);
+            const url = `https://wa.me/${numero}?text=${mensagem}`;
+            window.open(url, '_blank');
         });
-        dotsNav.appendChild(dot);
-    });
-    const dots = Array.from(dotsNav.children);
-
-    // --- Função que move o slider e atualiza os controlos ---
-    const updateSlider = () => {
-        const itemWidth = items[0].getBoundingClientRect().width;
-        const gap = parseInt(window.getComputedStyle(track).gap, 10) || 0;
-        const scrollAmount = currentIndex * (itemWidth + gap);
-        
-        wrapper.scrollTo({ left: scrollAmount, behavior: 'smooth' });
-
-        dots.forEach((dot, index) => {
-            dot.classList.toggle('active', index === currentIndex);
-        });
-    };
-
-    // --- Ações dos botões de seta ---
-    nextButton.addEventListener('click', () => {
-        currentIndex = (currentIndex + 1) % items.length;
-        updateSlider();
-        resetAutoPlay();
-    });
-
-    prevButton.addEventListener('click', () => {
-        currentIndex = (currentIndex - 1 + items.length) % items.length;
-        updateSlider();
-        resetAutoPlay();
-    });
-    
-    // --- Lógica do Auto-play ---
-    const startAutoPlay = () => {
-        stopAutoPlay();
-        autoPlayInterval = setInterval(() => nextButton.click(), autoPlayDelay);
-    };
-    const stopAutoPlay = () => clearInterval(autoPlayInterval);
-    const resetAutoPlay = () => {
-        stopAutoPlay();
-        startAutoPlay();
-    };
-
-    sliderContainer.addEventListener('mouseenter', stopAutoPlay);
-    sliderContainer.addEventListener('mouseleave', startAutoPlay);
-
-    // --- Inicia o slider ---
-    updateSlider();
-    startAutoPlay();
+    }
 });
-
-
-
 
 
 
@@ -117,23 +116,5 @@
                     hiddenInput.value = button.getAttribute('data-value');
                 }
             });
-        });
-    }
-
-    // --- CÓDIGO DO BOTÃO FLUTUANTE DE WHATSAPP ---
-    const floatBtn = document.querySelector('.whatsapp-float-btn');
-    if (floatBtn) {
-        const chatBox = document.querySelector('.whatsapp-chat-box');
-        const closeBtn = document.querySelector('.chat-close-btn');
-        const sendBtn = document.querySelector('.chat-send-btn');
-        const messageBox = document.getElementById('whatsapp-message');
-
-        floatBtn.addEventListener('click', () => chatBox.classList.toggle('visible'));
-        closeBtn.addEventListener('click', () => chatBox.classList.remove('visible'));
-        sendBtn.addEventListener('click', () => {
-            const numero = '5585987411585';
-            const mensagem = encodeURIComponent(messageBox.value);
-            const url = `https://wa.me/${numero}?text=${mensagem}`;
-            window.open(url, '_blank');
         });
     }
