@@ -1200,6 +1200,10 @@ footer {
 
     .footer-container {
         text-align: center;
+        align-items: center; 
+    }
+        .social-icons {
+        justify-content: center;
     }
 
     /* --- Slider --- */
