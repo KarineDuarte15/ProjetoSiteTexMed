@@ -1146,6 +1146,8 @@ footer {
 /* ==========================================================================
    4. RESPONSIVIDADE (MEDIA QUERIES)
    ========================================================================== */
+
+/* --- AJUSTES PARA TABLETS E DISPOSITIVOS MENORES --- */
 @media (max-width: 992px) {
     h1 { font-size: 2.2rem; }
     h2 { font-size: 2rem; }
@@ -1216,15 +1218,27 @@ footer {
         gap: 30px;
     }
 
+    /* --- CORREÇÃO DO RODAPÉ --- */
     .footer-container {
         text-align: center;
         align-items: center; 
     }
-        .social-icons {
+    .social-icons {
         justify-content: center;
     }
 
-    /* --- Slider --- */
+    /* --- CORREÇÃO DO SLIDER DE SERVIÇOS --- */
+    .servico-card {
+        /* Faz com que apenas 1 card apareça por vez */
+        flex: 0 0 90%; 
+        scroll-snap-align: center;
+    }
+
+    .servicos-track {
+        /* Adiciona espaçamento nas pontas para centralizar o primeiro card */
+        padding: 0 5%; 
+    }
+    
     .slider-btn {
         width: 40px;
         height: 40px;
@@ -1233,13 +1247,53 @@ footer {
     
     .prev-btn { left: 10px; }
     .next-btn { right: 10px; }
+
+    /* --- CORREÇÃO DO MODAL DE CONTATO --- */
+    .modal-content .form-container {
+        flex-direction: column;
+    }
+
+    .modal-content .form-info {
+        display: none; /* Esconde a imagem e texto lateral para poupar espaço */
+    }
+
+    .modal-content {
+        padding: 30px;
+        width: 95%;
+    }
+
+    /* --- CORREÇÃO DAS ABAS DE SERVIÇOS AVANÇADOS --- */
+    .tabs-nav {
+        flex-wrap: wrap; /* Permite que as abas quebrem a linha */
+    }
+    .tab-link {
+        flex-basis: 50%; /* Cada aba ocupa 50% da largura */
+        font-size: 0.9rem;
+    }
+    .tab-pane h3 {
+        font-size: 1.5rem;
+    }
 }
 
+/* --- AJUSTES FINOS PARA TELEMÓVEIS --- */
 @media (max-width: 576px) {
     h1 { font-size: 1.8rem; }
     h2 { font-size: 1.6rem; }
 
-        .logo-hero {
-            max-height: 120px;
+    .logo-hero {
+        max-height: 120px;
+    }
+
+    /* Ajuste fino do formulário do modal */
+    .modal-content .form-group-split {
+        flex-direction: column;
+    }
+
+    /* Ajuste fino do slider */
+    .servico-card {
+        flex: 0 0 85%;
+    }
+         .servicos-track {
+            padding: 0 7.5%;
         }
     }
