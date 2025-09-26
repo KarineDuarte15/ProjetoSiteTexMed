@@ -752,9 +752,27 @@ footer {
 }
 
 /* --- PÁGINA QUEM SOMOS (quemsomos.html) --- */
+/* --- PÁGINA QUEM SOMOS - NOVA PALETA DE CORES --- */
+
+/* Fundo da primeira secção ("Quem Somos") passa a ser branco */
 #quem-somos {
     background-color: var(--cor-branca);
-    padding: 100px 5%;
+}
+
+/* Fundo da segunda secção ("Sobre Nós") passa a ser azul escuro */
+#sobre {
+    background-color: var(--cor-azul-escuro);
+}
+
+/* Ajustes de texto para a secção "Sobre Nós" para garantir a legibilidade */
+#sobre h2,
+#sobre p {
+    color: var(--cor-branca);
+}
+
+/* Detalhe dourado no título "Quem Somos" */
+.quem-somos-text h2 {
+    color: var(--cor-dourado);
 }
 
 .quem-somos-container {
@@ -772,7 +790,7 @@ footer {
 .quem-somos-image img {
     width: 100%;
     border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%;
-    border: 8px solid var(--cor-verde);
+    border: 10px solid var(--cor-dourado);
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
