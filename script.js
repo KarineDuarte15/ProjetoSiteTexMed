@@ -175,3 +175,23 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // --- CÓDIGO DAS ABAS DE SERVIÇOS AVANÇADOS ---
+    const tabsContainer = document.querySelector('.tabs-container');
+    if (tabsContainer) {
+        const tabLinks = tabsContainer.querySelectorAll('.tab-link');
+        const tabPanes = tabsContainer.querySelectorAll('.tab-pane');
+
+        tabLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                const targetTab = link.getAttribute('data-tab');
+
+                // Desativa todos
+                tabLinks.forEach(item => item.classList.remove('active'));
+                tabPanes.forEach(item => item.classList.remove('active'));
+
+                // Ativa o correto
+                link.classList.add('active');
+                document.getElementById(targetTab).classList.add('active');
+            });
+        });
+    }

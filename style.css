@@ -564,6 +564,96 @@ footer {
     background-color: var(--cor-verde);
 }
 
+/* --- PÁGINA INICIAL - SEÇÃO SERVIÇOS AVANÇADOS (ABAS) --- */
+#servicos-avancados {
+    background-color: #f0f5fb; /* Um fundo claro para destacar */
+}
+
+.subtitulo-avancados {
+    max-width: 600px;
+    margin: -20px auto 50px auto;
+    color: #555;
+}
+
+.tabs-container {
+    max-width: 900px;
+    margin: 0 auto;
+    background-color: var(--cor-branca);
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+    overflow: hidden;
+}
+
+.tabs-nav {
+    display: flex;
+    background-color: var(--cor-azul-escuro);
+}
+
+.tab-link {
+    flex: 1;
+    padding: 20px;
+    background-color: transparent;
+    border: none;
+    color: var(--cor-cinza-azulado);
+    font-size: 1rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border-bottom: 3px solid transparent;
+}
+
+.tab-link:hover {
+    background-color: #0A2A47;
+    color: var(--cor-branca);
+}
+
+.tab-link.active {
+    color: var(--cor-branca);
+    border-bottom-color: var(--cor-dourado);
+}
+
+.tabs-content {
+    padding: 40px;
+    text-align: left;
+}
+
+.tab-pane {
+    display: none;
+    animation: fadeIn 0.5s;
+}
+
+.tab-pane.active {
+    display: block;
+}
+
+.tab-pane h3 {
+    font-size: 1.8rem;
+    margin-bottom: 15px;
+}
+
+.tab-pane ul {
+    list-style-type: '🔹';
+    padding-left: 20px;
+    margin-top: 20px;
+}
+
+.tab-pane ul li {
+    margin-bottom: 10px;
+}
+
+.resultado-box {
+    margin-top: 30px;
+    padding: 15px;
+    background-color: #f0f5fb;
+    border-left: 5px solid var(--cor-dourado);
+    font-style: italic;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
 /* --- PÁGINA INICIAL - SEÇÃO REDES SOCIAIS --- */
 
 #redes-sociais {
