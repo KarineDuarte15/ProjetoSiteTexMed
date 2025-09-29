@@ -1266,33 +1266,134 @@ footer {
     .next-btn { right: 10px; }
 
     /* --- CORREÇÃO DO MODAL DE CONTATO --- */
-    .modal-content .form-container {
-        flex-direction: column;
+    .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 0;
+    transition: opacity 0.4s ease;
     }
 
-    .modal-content .form-info {
-        display: none; /* Esconde a imagem e texto lateral para poupar espaço */
-    }
-    /* ADICIONE ESTA NOVA REGRA ABAIXO */
-    .modal-content .contact-form {
-        flex: 1; /* Garante que o formulário ocupe a outra metade do espaço */
+    .modal-overlay.visible {
+        display: flex;
+        opacity: 1;
     }
 
     .modal-content {
-        padding: 30px;
-        width: 95%;
+        background-color: #f0f5fb;
+        padding: 40px;
+        border-radius: 15px;
+        max-width: 900px;
+        width: 90%;
+        position: relative;
+        box-shadow: 0 5px 25px rgba(0,0,0,0.2);
+        transform: scale(0.9);
+        transition: transform 0.4s ease;
     }
 
-    /* --- CORREÇÃO DAS ABAS DE SERVIÇOS AVANÇADOS --- */
-    .tabs-nav {
-        flex-wrap: wrap; /* Permite que as abas quebrem a linha */
+    .modal-overlay.visible .modal-content {
+        transform: scale(1);
     }
-    .tab-link {
-        flex-basis: 50%; /* Cada aba ocupa 50% da largura */
-        font-size: 0.9rem;
+
+    .modal-close-btn {
+        position: absolute;
+        top: 15px;
+        right: 20px;
+        background: none;
+        border: none;
+        font-size: 28px;
+        color: var(--cor-cinza-azulado);
+        cursor: pointer;
     }
-    .tab-pane h3 {
-        font-size: 1.5rem;
+
+    .modal-content .form-container {
+        display: flex; /* Garante o layout lado a lado em ecrãs grandes */
+        gap: 40px;
+        align-items: center;
+    }
+
+    .modal-content .form-info { 
+        flex: 1; /* Ocupa metade do espaço */
+        text-align: left;
+    }
+
+    .modal-content .contact-form {
+        flex: 1; /* Ocupa a outra metade do espaço */
+    }
+
+    .modal-content .form-info h2 { 
+        color: var(--cor-azul-escuro); 
+        font-size: 1.8rem;
+        font-weight: 700;
+    }
+
+    .modal-content .form-info p { 
+        color: #555; 
+        margin-top: 10px;
+    }
+
+    .form-info-image-wrapper {
+        margin-top: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal-content .form-info img { 
+        width: 85%;
+        border-radius: 73% 27% 56% 44% / 54% 30% 70% 46%; 
+        position: relative;
+        z-index: 2;
+    }
+
+    .modal-content .form-group { margin-bottom: 15px; }
+    .modal-content .form-group label { display: block; margin-bottom: 5px; font-weight: 500; font-size: 0.9rem; }
+    .modal-content .form-group input {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid var(--cor-cinza-azulado);
+        border-radius: 8px;
+        font-size: 1rem;
+    }
+    .modal-content .form-group-split { display: flex; gap: 15px; }
+    .modal-content .form-submit-btn {
+        width: 100%;
+        padding: 15px;
+        font-size: 1.1rem;
+        background-color: var(--cor-dourado);
+        color: var(--cor-azul-escuro);
+        border: none;
+        cursor: pointer;
+    }
+
+    .radio-group {
+        display: flex;
+        gap: 10px;
+    }
+
+    .radio-button {
+        flex: 1;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        background-color: #FFF;
+        color: var(--cor-cinza-azulado);
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+
+    .radio-button.active {
+        background-color: #dbe9f9;
+        color: var(--cor-verde);
+        border-color: var(--cor-verde);
     }
 }
 
