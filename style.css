@@ -1273,6 +1273,10 @@ footer {
     .modal-content .form-info {
         display: none; /* Esconde a imagem e texto lateral para poupar espaço */
     }
+    /* ADICIONE ESTA NOVA REGRA ABAIXO */
+    .modal-content .contact-form {
+        flex: 1; /* Garante que o formulário ocupe a outra metade do espaço */
+    }
 
     .modal-content {
         padding: 30px;
