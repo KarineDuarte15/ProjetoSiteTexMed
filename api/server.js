@@ -1,60 +1,70 @@
 const express = require('express');
 const nodemailer = require('nodemailer');
 const dotenv = require('dotenv');
-const path = require('path'); // Módulo para lidar com caminhos de arquivos
+const path = require('path');
 
 dotenv.config();
 
 const app = express();
 const PORT = 4000;
 
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, '..')));
+// Define o caminho para a pasta principal do projeto (um nível acima da pasta 'api')
+const projectRoot = path.join(__dirname, '..');
 
-app.post('/enviar-dados', (req, res) => {
-    // Captura os novos campos do formulário
-    const { nome, email, celular, assunto, mensagem } = req.body;
+// Serve os ficheiros estáticos (HTML, CSS, JS, imagens) a partir da pasta principal
+app.use(express.static(projectRoot));
+app.use(express.urlencoded({ extended: true }));
+
+// Rota para o envio do formulário
+// Esta é a rota que corresponde ao action="api/server" do seu HTML
+app.post('/api/server', (req, res) => {
+    // Usando os campos do formulário do modal como referência
+    const { nome, celular, email, cidade, atividade, preferencia_contato } = req.body;
 
     const transporter = nodemailer.createTransport({
-        host: "mail.taxmed.com.br", // Servidor de e-mail da HostGator para o seu domínio
-        port: 465,                  // Porta para conexão segura (SSL)
-        secure: true,               // Habilita a conexão segura
+        host: "mail.taxmed.com.br",
+        port: 465,
+        secure: true,
         auth: {
-            user: process.env.EMAIL_USER, // O seu e-mail: contato@taxmed.com.br
+            user: process.env.EMAIL_USER, // contato@taxmed.com.br
             pass: process.env.EMAIL_PASS, // A senha do seu e-mail
         },
     });
 
-    // Monta o novo corpo do e-mail
     const mailOptions = {
-        from: process.env.EMAIL_USER,
-        to: 'contato@taxmed.com.br', // O teu e-mail de administrador
-        subject: `Novo Contato (Assunto: ${assunto}) - ${nome}`,
+        from: `"${nome}" <${process.env.EMAIL_USER}>`, // Mostra o nome da pessoa no remetente
+        to: 'contato@taxmed.com.br', // E-mail que vai receber a mensagem
+        replyTo: email, // Permite responder diretamente para o e-mail da pessoa
+        subject: `Novo Contato do Site TaxMed - ${nome}`,
         html: `
             <h1>Novo Lead Recebido do Site!</h1>
             <p><strong>Nome:</strong> ${nome}</p>
-            <p><strong>Email:</strong> ${email}</p>
-            <p><strong>Telefone/Celular:</strong> ${celular}</p>
+            <p><strong>Celular:</strong> ${celular}</p>
+            <p><strong>E-mail:</strong> <a href="mailto:${email}">${email}</a></p>
             <hr>
-            <p><strong>Assunto:</strong> ${assunto}</p>
-            <p><strong>Mensagem:</strong></p>
-            <p>${mensagem}</p>
+            <p><strong>Cidade:</strong> ${cidade || 'Não preenchido'}</p>
+            <p><strong>Atividade:</strong> ${atividade || 'Não preenchido'}</p>
+            <p><strong>Preferência de Contato:</strong> ${preferencia_contato || 'Não preenchido'}</p>
         `,
     };
 
     transporter.sendMail(mailOptions, (error, info) => {
         if (error) {
             console.error('Erro ao enviar e-mail:', error);
-            res.send('Ocorreu um erro. Tente novamente mais tarde.');
-        } else {
-            console.log('E-mail enviado com sucesso:', info.response);
-            // Redireciona para a nova página de sucesso
-            res.sendFile(path.join(__dirname, 'obrigado.html'));
+            return res.status(500).send('Ocorreu um erro. Tente novamente mais tarde.');
         }
+        // Redireciona para a página de obrigado
+        res.redirect('/obrigado.html');
     });
 });
 
-app.listen(PORT, () => {
-    console.log(`Servidor a rodar em http://localhost:${PORT}`);
-});
+// Esta parte só será usada quando você executar o servidor localmente
+// Se não houver outro processo a usar a porta, ele irá iniciar
+if (process.env.NODE_ENV !== 'test') {
+    app.listen(PORT, () => {
+        console.log(`Servidor local a rodar em http://localhost:${PORT}`);
+    });
+}
+
+// Exporta a app para a Vercel
 module.exports = app;
