@@ -752,7 +752,7 @@ footer {
 }
 
 /* --- PÁGINA QUEM SOMOS (quemsomos.html) --- */
-/* --- PÁGINA QUEM SOMOS - NOVA PALETA DE CORES --- */
+
 
 /* Fundo da primeira secção ("Quem Somos") passa a ser branco */
 #quem-somos {
@@ -763,6 +763,11 @@ footer {
 #sobre {
     background-color: var(--cor-azul-escuro);
 }
+#sobre-nos {
+    background-color: var(--cor-branca);
+
+}
+
 
 /* Ajustes de texto para a secção "Sobre Nós" para garantir a legibilidade */
 #sobre h2,
@@ -803,6 +808,18 @@ footer {
     color: var(--cor-verde);
     margin-bottom: 20px;
 }
+/* --- Secção 3: "Sobre Nós" (FUNDO BRANCO) --- */
+#sobre-nos {
+    background-color: var(--cor-branca);
+    
+}
+#sobre-nos h2,
+#sobre-nos p {
+    color: var(--cor-azul-escuro); /* Texto da seção em azul escuro */
+}
+
+
+
 /* --- MODAL DE CONTATO --- */
 .modal-overlay {
     position: fixed;
