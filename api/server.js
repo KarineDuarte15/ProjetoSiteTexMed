@@ -22,13 +22,16 @@ app.post('/api/server', (req, res) => {
     const { nome, celular, email, cidade, atividade, preferencia_contato } = req.body;
 
     const transporter = nodemailer.createTransport({
-        host: "mail.taxmed.com.br",
-        port: 587,
-        secure: false,
+        host: "smtp.hostgator.com.br", // CORRIGIDO: O servidor de envio correto
+        port: 587,                      // A porta recomendada
+        secure: false,                  // Necessário para a porta 587
         auth: {
-            user: process.env.EMAIL_USER, // contato@taxmed.com.br
+            user: process.env.EMAIL_USER, // O seu e-mail: contato@taxmed.com.br
             pass: process.env.EMAIL_PASS, // A senha do seu e-mail
         },
+        tls: {
+            rejectUnauthorized: false
+        }
     });
 
     const mailOptions = {
