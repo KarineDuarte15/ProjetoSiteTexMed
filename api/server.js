@@ -23,8 +23,8 @@ app.post('/api/server', (req, res) => {
 
     const transporter = nodemailer.createTransport({
         host: "mail.taxmed.com.br",
-        port: 465,
-        secure: true,
+        port: 587,
+        secure: false,
         auth: {
             user: process.env.EMAIL_USER, // contato@taxmed.com.br
             pass: process.env.EMAIL_PASS, // A senha do seu e-mail
