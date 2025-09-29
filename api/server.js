@@ -9,7 +9,7 @@ const app = express();
 const PORT = 4000;
 
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, '..')));
 
 app.post('/enviar-dados', (req, res) => {
     // Captura os novos campos do formulário
@@ -28,7 +28,7 @@ app.post('/enviar-dados', (req, res) => {
     // Monta o novo corpo do e-mail
     const mailOptions = {
         from: process.env.EMAIL_USER,
-        to: 'karineduarte.dev@gmail.com', // O teu e-mail de administrador
+        to: 'contato@taxmed.com.br', // O teu e-mail de administrador
         subject: `Novo Contato (Assunto: ${assunto}) - ${nome}`,
         html: `
             <h1>Novo Lead Recebido do Site!</h1>
@@ -57,3 +57,4 @@ app.post('/enviar-dados', (req, res) => {
 app.listen(PORT, () => {
     console.log(`Servidor a rodar em http://localhost:${PORT}`);
 });
+module.exports = app;
