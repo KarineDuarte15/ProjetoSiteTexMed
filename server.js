@@ -16,10 +16,12 @@ app.post('/enviar-dados', (req, res) => {
     const { nome, email, celular, assunto, mensagem } = req.body;
 
     const transporter = nodemailer.createTransport({
-        service: 'gmail',
+        host: "mail.taxmed.com.br", // Servidor de e-mail da HostGator para o seu domínio
+        port: 465,                  // Porta para conexão segura (SSL)
+        secure: true,               // Habilita a conexão segura
         auth: {
-            user: process.env.EMAIL_USER,
-            pass: process.env.EMAIL_PASS,
+            user: process.env.EMAIL_USER, // O seu e-mail: contato@taxmed.com.br
+            pass: process.env.EMAIL_PASS, // A senha do seu e-mail
         },
     });
 
