@@ -29,9 +29,7 @@ app.post('/api/server', (req, res) => {
             user: process.env.EMAIL_USER, // contato@taxmed.com.br
             pass: process.env.EMAIL_PASS, // A senha do seu e-mail
         },
-        tls: {
-            rejectUnauthorized: false
-        }
+
     });
 
     const mailOptions = {
