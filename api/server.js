@@ -23,8 +23,8 @@ app.post('/api/server', (req, res) => {
 
     const transporter = nodemailer.createTransport({
         host: "br762.hostgator.com.br", // O endereço real e correto do seu servidor
-        port: 587,
-        secure: false, 
+        port: 465, // Porta para TLS/SSL
+        secure: true, // Define como true para usar TLS/SSL
         auth: {
             user: process.env.EMAIL_USER, // contato@taxmed.com.br
             pass: process.env.EMAIL_PASS, // A senha do seu e-mail
