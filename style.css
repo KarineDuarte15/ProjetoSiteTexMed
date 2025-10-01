@@ -1372,6 +1372,18 @@ footer {
         border: none;
         cursor: pointer;
     }
+    /* --- ADICIONE ESTE CÓDIGO --- */
+
+    /* Estilo para Mobile (telas com 768px de largura ou menos) */
+    @media (max-width: 768px) {
+    .container-contato {
+        flex-direction: column; /* Coloca uma coluna em cima da outra */
+    }
+
+    .coluna-texto, .coluna-formulario {
+        width: 100%; /* Faz cada coluna ocupar a largura total */
+    }
+    }
 
     .radio-group {
         display: flex;
