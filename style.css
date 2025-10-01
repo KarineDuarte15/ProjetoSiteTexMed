@@ -1164,7 +1164,7 @@ footer {
    4. RESPONSIVIDADE (MEDIA QUERIES)
    ========================================================================== */
 
-/* --- AJUSTES PARA TABLETS E DISPOSITIVOS MENORES --- */
+/* --- AJUSTES PARA TABLETS (Telas até 992px) --- */
 @media (max-width: 992px) {
     h1 { font-size: 2.2rem; }
     h2 { font-size: 2rem; }
@@ -1194,7 +1194,7 @@ footer {
     .main-nav ul {
         display: none;
         position: absolute;
-        top: 80px;
+        top: 80px; /* Altura do cabeçalho */
         left: 0;
         width: 100%;
         background-color: var(--cor-azul-escuro);
@@ -1219,7 +1219,7 @@ footer {
         width: auto;
     }
 
-    /* --- Seções Empilhadas --- */
+    /* --- Seções que empilham em telas menores --- */
     .hero-text-content {
         padding: 40px 5%;
         text-align: center;
@@ -1235,7 +1235,7 @@ footer {
         gap: 30px;
     }
 
-    /* --- CORREÇÃO DO RODAPÉ --- */
+    /* --- Correção do Rodapé --- */
     .footer-container {
         text-align: center;
         align-items: center; 
@@ -1244,16 +1244,14 @@ footer {
         justify-content: center;
     }
 
-    /* --- CORREÇÃO DO SLIDER DE SERVIÇOS --- */
+    /* --- Slider de Serviços --- */
     .servico-card {
-        /* Faz com que apenas 1 card apareça por vez */
-        flex: 0 0 90%; 
+        flex: 0 0 90%; /* Apenas 1 card por vez */
         scroll-snap-align: center;
     }
 
     .servicos-track {
-        /* Adiciona espaçamento nas pontas para centralizar o primeiro card */
-        padding: 0 5%; 
+        padding: 0 5%; /* Espaçamento nas pontas para centralizar */
     }
     
     .slider-btn {
@@ -1264,152 +1262,40 @@ footer {
     
     .prev-btn { left: 10px; }
     .next-btn { right: 10px; }
+}
 
-    /* --- CORREÇÃO DO MODAL DE CONTATO --- */
-    .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);
-    display: none;
-    align-items: center;
-    justify-content: center;
-    z-index: 2000;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    }
 
-    .modal-overlay.visible {
-        display: flex;
-        opacity: 1;
-    }
-
-    .modal-content {
-        background-color: #f0f5fb;
-        padding: 40px;
-        border-radius: 15px;
-        max-width: 900px;
-        width: 90%;
-        position: relative;
-        box-shadow: 0 5px 25px rgba(0,0,0,0.2);
-        transform: scale(0.9);
-        transition: transform 0.4s ease;
-    }
-
-    .modal-overlay.visible .modal-content {
-        transform: scale(1);
-    }
-
-    .modal-close-btn {
-        position: absolute;
-        top: 15px;
-        right: 20px;
-        background: none;
-        border: none;
-        font-size: 28px;
-        color: var(--cor-cinza-azulado);
-        cursor: pointer;
-    }
-
-    .modal-content .form-container {
-        display: flex; /* Garante o layout lado a lado em ecrãs grandes */
-        gap: 40px;
-        align-items: center;
-    }
-
-    .modal-content .form-info { 
-        flex: 1; /* Ocupa metade do espaço */
-        text-align: left;
-    }
-
-    .modal-content .contact-form {
-        flex: 1; /* Ocupa a outra metade do espaço */
-    }
-
-    .modal-content .form-info h2 { 
-        color: var(--cor-azul-escuro); 
-        font-size: 1.8rem;
-        font-weight: 700;
-    }
-
-    .modal-content .form-info p { 
-        color: #555; 
-        margin-top: 10px;
-    }
-
-    .form-info-image-wrapper {
-        margin-top: 30px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
-    .modal-content .form-info img { 
-        width: 85%;
-        border-radius: 73% 27% 56% 44% / 54% 30% 70% 46%; 
-        position: relative;
-        z-index: 2;
-    }
-
-    .modal-content .form-group { margin-bottom: 15px; }
-    .modal-content .form-group label { display: block; margin-bottom: 5px; font-weight: 500; font-size: 0.9rem; }
-    .modal-content .form-group input {
-        width: 100%;
-        padding: 12px;
-        border: 1px solid var(--cor-cinza-azulado);
-        border-radius: 8px;
-        font-size: 1rem;
-    }
-    .modal-content .form-group-split { display: flex; gap: 15px; }
-    .modal-content .form-submit-btn {
-        width: 100%;
-        padding: 15px;
-        font-size: 1.1rem;
-        background-color: var(--cor-dourado);
-        color: var(--cor-azul-escuro);
-        border: none;
-        cursor: pointer;
-    }
-    /* --- ADICIONE ESTE CÓDIGO --- */
-
-    /* Estilo para Mobile (telas com 768px de largura ou menos) */
-    @media (max-width: 768px) {
-    .container-contato {
-        flex-direction: column; /* Coloca uma coluna em cima da outra */
+/* --- AJUSTES PARA CELULARES GRANDES (Telas até 768px) --- */
+@media (max-width: 768px) {
+    /* --- SUA CORREÇÃO PARA O FORMULÁRIO DE CONTATO --- */
+    .container-contato, .contact-form-page {
+        flex-direction: column; 
     }
 
     .coluna-texto, .coluna-formulario {
-        width: 100%; /* Faz cada coluna ocupar a largura total */
-    }
-    }
-
-    .radio-group {
-        display: flex;
-        gap: 10px;
+        width: 100%;
     }
 
-    .radio-button {
-        flex: 1;
-        padding: 12px;
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        background-color: #FFF;
-        color: var(--cor-cinza-azulado);
-        cursor: pointer;
-        font-weight: 500;
-        transition: all 0.3s ease;
+    /* --- CORREÇÃO EXTRA PARA O FORMULÁRIO DO MODAL --- */
+    .modal-content .form-container {
+        flex-direction: column; /* Empilha o texto e o formulário */
+        text-align: center;
     }
 
-    .radio-button.active {
-        background-color: #dbe9f9;
-        color: var(--cor-verde);
-        border-color: var(--cor-verde);
+    .modal-content .form-info {
+        text-align: center;
+    }
+
+    .modal-content .form-info img {
+        display: none; /* Oculta a imagem no modal para economizar espaço */
+    }
+    .form-info-image-wrapper::before, .form-info-image-wrapper::after {
+        display: none; /* Oculta os elementos decorativos */
     }
 }
 
-/* --- AJUSTES FINOS PARA TELEMÓVEIS --- */
+
+/* --- AJUSTES FINOS PARA CELULARES (Telas até 576px) --- */
 @media (max-width: 576px) {
     h1 { font-size: 1.8rem; }
     h2 { font-size: 1.6rem; }
@@ -1418,16 +1304,21 @@ footer {
         max-height: 120px;
     }
 
-    /* Ajuste fino do formulário do modal */
+    /* Ajuste do formulário do modal */
     .modal-content .form-group-split {
         flex-direction: column;
     }
+    
+    /* Ajuste do formulário da página de contato */
+    .contact-form-page .form-group-split {
+        flex-direction: column;
+    }
 
-    /* Ajuste fino do slider */
+    /* Ajuste do slider de serviços */
     .servico-card {
         flex: 0 0 85%;
     }
-         .servicos-track {
-            padding: 0 7.5%;
-        }
+    .servicos-track {
+        padding: 0 7.5%;
     }
+} 
